@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+.pio/
+.vscode/
+build/
+install/
+log/
+/core.*
