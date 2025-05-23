@@ -28,7 +28,6 @@ class Machine_etats
         AVOID, // Etat pour éviter un obstacle de dernière minute
         STOP,
         END,
-
     };
 
 private:
