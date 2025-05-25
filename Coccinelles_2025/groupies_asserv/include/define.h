@@ -61,12 +61,12 @@ MACHINE A ETAT
 #define FINY1 1500 
 /*ROBOT DEVANT*/
 #define START_TIME 85  //Les groupies commence dans les 15 dernières secondes.
-#define STARTX1 100 //temp
-#define STARTY1 1625 //temp
-#define TURNX1 700
-#define TURNY1 1625
-#define FINX1 1400
-#define FINY1 1400
+#define STARTX2 100 //temp
+#define STARTY2 1625 //temp
+#define TURNX2 700
+#define TURNY2 1625
+#define FINX2 1400
+#define FINY2 1400
 
 
 
