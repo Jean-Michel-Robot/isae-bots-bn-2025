@@ -16,6 +16,9 @@ ENCODEURS
 #define CLK_R 17 // CLK RIGHT ENCODER
 #define DT_R 16  // DT RIGHT Encoder
 
+#define INV_L 0 // Inversion du sens de rotation de l'encodeur gauche
+#define INV_R 0 // Inversion du sens de rotation de l'encodeur droit
+
 /*
 MOTEURS
 */
