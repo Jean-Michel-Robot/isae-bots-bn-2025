@@ -51,10 +51,10 @@ void setup()
   moteur_d.setup();
   Serial.println("moteur setup");
   // Test moteur
-  /*
-  moteur_g.set_speed(255); //TODO : regler la vitesse pour tester la vitesse max
-  moteur_d.set_speed(255);
-  */
+
+  //moteur_g.set_speed(255); //TODO : regler la vitesse pour tester la vitesse max
+  //moteur_d.set_speed(255);
+  
  
   asserv.setup();
   Serial.println("asserv setup");
@@ -69,8 +69,8 @@ void loop()
 {
     
   //DEBUG
-encoder_L.loop();
-encoder_R.loop();
+//encoder_L.loop();
+//encoder_R.loop();
   
   
 //ultrason.loop();
@@ -83,22 +83,22 @@ asserv.loop();
 //  Serial.println("machie etats loop");
 
 
-//  if(m_time_log + 500 < millis()) // Log toutes les secondes
-//  {
-//    Serial.print("Distance: ");
-//    Serial.println(ultrason.m_distance);
-//    Serial.print("Vitesse L :");
-//    Serial.print(mesure_pos.vitesse_l);
-//    Serial.print(" Vitesse R :");
-//    Serial.print(mesure_pos.vitesse_r);
-//    Serial.print(" Pos X :");
-//    Serial.print(mesure_pos.position_x);
-//    Serial.print(" Pos Y :");
-//    Serial.print(mesure_pos.position_y);
-//    Serial.print(" Theta :");
-//    Serial.print(mesure_pos.position_theta);
-//    Serial.print(" Etat :");
-//    Serial.println(machine_etats.etat);
-//    m_time_log = millis();
-//  }
+  if(m_time_log + 500 < millis()) // Log toutes les secondes
+  {
+    Serial.print("Distance: ");
+    Serial.println(ultrason.m_distance);
+    Serial.print("Vitesse L :");
+    Serial.print(mesure_pos.vitesse_l);
+    Serial.print(" Vitesse R :");
+    Serial.print(mesure_pos.vitesse_r);
+    Serial.print(" Pos X :");
+    Serial.print(mesure_pos.position_x);
+    Serial.print(" Pos Y :");
+    Serial.print(mesure_pos.position_y);
+    Serial.print(" Theta :");
+    Serial.print(mesure_pos.position_theta);
+    Serial.print(" Etat :");
+    Serial.println(machine_etats.etat);
+    m_time_log = millis();
+  }
 }

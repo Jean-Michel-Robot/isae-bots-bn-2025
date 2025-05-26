@@ -20,7 +20,7 @@ ENCODEURS
 #define DT_L 16  // DT RIGHT Encoder
 
 #define INV_L 0 // Inversion du sens de rotation de l'encodeur gauche
-#define INV_R 0 // Inversion du sens de rotation de l'encodeur droit
+#define INV_R 1 // Inversion du sens de rotation de l'encodeur droit
 
 
 /*
@@ -38,7 +38,7 @@ MOTEURS
 
 /*
 SENSORS
-*/
+*/  
 
 /*IR SENSOR*/
 #define I2C_SDA 21
