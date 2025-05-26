@@ -26,14 +26,16 @@ ENCODEURS
 /*
 MOTEURS
 */
+//Moteur 2 = gauche
+#define EN_L 33  // EN LEFT MOTEUR
+#define IN1_L 25 // IN1 LEFT MOTEUR
+#define IN2_L 32 // IN2 lEFT MOTEUR
 
-#define EN_L 14  // EN RIGHT MOTEUR
-#define IN1_L 27 // IN1 RIGHT MOTEUR
-#define IN2_L 26 // IN2 RIGHT MOTEUR
 
-#define EN_R 33  // EN LEFT MOTEUR
-#define IN1_R 25 // IN1 LEFT MOTEUR
-#define IN2_R 32 // IN2 LEFT MOTEUR
+//Moteur 1 = droit
+#define EN_R 14  // EN RIGHT MOTEUR
+#define IN1_R 27 // IN1 RIGHT MOTEUR
+#define IN2_R 26 // IN2 RIGHT MOTEUR
 
 /*
 SENSORS
@@ -45,6 +47,7 @@ SERVO
 #define ANGLE1 20  
 #define ANGLE2 60 
 #define TEMPS_BLINK 1  //Temps clignotement (secondes).
+#define Serv_Pin 34 // 
 
 /*
 MACHINE A ETAT

@@ -88,7 +88,7 @@ void Asserv::loop()
 {
     if (micros() - m_time >= 1e4)
     {
-        asserv_global(0, 0, -M_PI); // vitesse max de 25 cm/s. Est-ce vrai ?
+        asserv_global(20, 20, 0); // vitesse max de 25 cm/s. Est-ce vrai ?
         m_time = micros();
     }
 }

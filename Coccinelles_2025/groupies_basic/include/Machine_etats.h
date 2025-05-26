@@ -39,15 +39,16 @@ public:
     bool condy_turn ;
     bool condx_arret ;
     bool condy_arret ;
+    bool has_turned = false; // Indique si on a déjà tourné ou pas
 
 // public:
     int tirette = 1; // TODO Etat par défaut de la tirette , CHANGER SI NECESSAIRE
     
-    float pos_init_x = DEPART_SUPERSTAR_X; // TODO : A MODIFIER en foction de la stratégie
-    float pos_init_y = DEPART_SUPERSTAR_Y;// TODO : A MODIFIER en foction de la stratégie
+    float pos_init_x = STARTX1; // TODO : A MODIFIER en foction de la stratégie
+    float pos_init_y = STARTY1;// TODO : A MODIFIER en foction de la stratégie
     
-    float pos_finit_x = TOURNE_SUPERSTAR_X; // Premier point clef
-    float pos_finit_y = TOURNE_SUPERSTAR_Y;// Premier point clef
+    float pos_finit_x = TURNX1; // Premier point clef
+    float pos_finit_y = TURNY1;// Premier point clef
     
     float pos_x = 0;
     float pos_y = 0;

@@ -20,9 +20,6 @@ ENCODEURS
 #define INV_R 0 // Inversion du sens de rotation de l'encodeur droit
 
 
-
-
-
 /*
 MOTEURS
 */
@@ -39,34 +36,46 @@ MOTEURS
 SENSORS
 */
 
+/*IR SENSOR*/
+#define I2C_SDA 21
+#define I2C_SCL 22
+
 /*
 SERVO
 */
 #define ANGLE1 20  
 #define ANGLE2 60 
 #define TEMPS_BLINK 1  //Temps clignotement (secondes).
+#define Serv_Pin 5 // A changer
 
 /*
 MACHINE A ETAT
 */
 #define START_TIME 85  //Les groupies commence dans les 15 dernières minutes.
 #define DMIN 15 // En cm, à modifier.
-#define TOURNE_SUPERSTAR_X 120    
-#define TOURNE_SUPERSTAR_Y 0 //Position ou la superstar va tourner
-#define DEPART_SUPERSTAR_X 0
-#define DEPART_SUPERSTAR_Y 0
-#define FIN_SUPERSTAR_X 120
-#define FIN_SUPERSTAR_Y -38 //position finale superstar
 #define EPSP 1 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
+#define DMIN 15 // En cm, à modifier.
+#define DMAX 30 //En cm, à modifier.
+#define STARTX 0
+#define STARTY 0
+/*ROBOT DERRIERE*/
+#define START_TIME1 88  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+#define STARTX1 100 //temp
+#define STARTY1 1750 //temp
+#define TURNX1 900
+#define TURNY1 1600
+#define FINX1 1100
+#define FINY1 1500 
+/*ROBOT DEVANT*/
+#define START_TIME2 85  //Les groupies commence dans les 15 dernières secondes.
+#define STARTX2 100 //temp
+#define STARTY2 1625 //temp
+#define TURNX2 700
+#define TURNY2 1625
+#define FINX2 1400
+#define FINY2 1400
 
-/*
-Capteur ultrason
-*/
-#define ECHO 7 // Broche Echo du HC-SR04 sur D7 //
-#define TRIGGER 8 // Broche Trigger du HC-SR04 sur D8 //
-#define DIST_MAX = 300; // Distance maxi a mesurer //
-#define DIST_MINs = 3; // Distance mini a mesurer //
 
 
 

@@ -8,7 +8,8 @@ class Irsensor
 {
 
 private:
-    int m_IR_PIN;
+    int m_SDA;
+    int m_SCL;
     long m_dt = 10;
 
 public:
@@ -19,7 +20,7 @@ public:
     int imageWidth = 0;                   // Used to pretty print output
 
     // Constructor
-    Irsensor(int Ir_PIN);
+    Irsensor(int SDA, int SCL);
 
     int ir_minimum_distance = 1000; // Distance absolue que l'on récupère du capteur
     int vision[8]; // liste des 8 distances mouyennes des capteurs de gauche à droite

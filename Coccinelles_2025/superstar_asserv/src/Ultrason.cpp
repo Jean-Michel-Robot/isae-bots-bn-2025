@@ -30,13 +30,13 @@ void Ultrason::loop()
         
         // Lecture de la durée de l'echo
         m_duration = pulseIn(m_echo_PIN, HIGH, max_duration);
-        Serial.print("Duration: ");
-        Serial.println(m_duration);
+        //Serial.print("Duration: ");
+        //Serial.println(m_duration);
         // Calcul de la distance en cm
         m_distance = m_duration * 0.034 / 2;
         
         //affichage de la distance (à commenter si pas besoin)
-        Serial.print("Distance: ");
-        Serial.println(m_distance);
+        //Serial.print("Distance: ");
+        //Serial.println(m_distance);
     }
 }

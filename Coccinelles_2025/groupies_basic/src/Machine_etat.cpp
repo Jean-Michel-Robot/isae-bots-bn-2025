@@ -44,7 +44,7 @@ void Machine_etats::loop()
         switch (etat)
         {
             case INIT:
-            if ((millis() - m_time_global >= START_TIME) && tirette == 0) {
+            if ((millis() - m_time_global >= START_TIME1) && tirette == 0) {
                 m_time_global = millis() ;
                 etat = MOVE ;
                 //Serial.println("init");
@@ -71,20 +71,21 @@ void Machine_etats::loop()
             //Serial.println(angle);
             m_p_asserv->asserv_global(SPEED, SPEED, angle); //corrige l'angle. 
             
-            condx_turn = (pos_x <= TOURNE_SUPERSTAR_X + EPSP) && (pos_x >= TOURNE_SUPERSTAR_X - EPSP) ;
-            condy_turn = (pos_y <= TOURNE_SUPERSTAR_Y + EPSP) && (pos_y >= TOURNE_SUPERSTAR_Y - EPSP) ;
+            condx_turn = (pos_x <= TURNX1 + EPSP) && (pos_x >= TURNX1 - EPSP) ;
+            condy_turn = (pos_y <= TURNY1 + EPSP) && (pos_y >= TURNY1 - EPSP) ;
             if ( condx_turn && condy_turn) {
-                pos_finit_x = FIN_SUPERSTAR_X;
-                pos_finit_y = FIN_SUPERSTAR_Y;
-                // pos_init_x = TOURNE_SUPERSTAR_X ;
-                // pos_init_y = TOURNE_SUPERSTAR_Y ;
+                pos_finit_x = FINX1 ;
+                pos_finit_y = FINY1 ;
+                pos_init_x = TURNX1 ;
+                pos_init_y = TURNY1 ;
+                has_turned = true;
                 // m_p_mesure_pos->reinitialise() ;
                 etat = MOVE ;
             }
 
-            condx_arret = (pos_x <= FIN_SUPERSTAR_X + EPSP) && (pos_x >= FIN_SUPERSTAR_X - EPSP) ;
-            condy_arret = (pos_y <= FIN_SUPERSTAR_Y + EPSP) && (pos_y >= FIN_SUPERSTAR_Y - EPSP) ;
-            if (condx_arret && condy_arret) {
+            condx_arret = (pos_x <= FINX1 + EPSP) && (pos_x >= FINX1 - EPSP) ;
+            condy_arret = (pos_y <= FINY1 + EPSP) && (pos_y >= FINY1 - EPSP) ;
+            if (condx_arret && condy_arret && has_turned) {
                 etat = END ;
             }
             else {

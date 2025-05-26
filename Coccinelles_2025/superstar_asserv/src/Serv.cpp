@@ -15,11 +15,13 @@ void Serv::blink(long temps_blink, int angle1, int angle2)
     {
       this->servo.write(angle2);
       etat = angle2;
+      Serial.println("Servo moved to angle2");
     }
     else
     {
       this->servo.write(angle1);
       etat = angle1;
+      Serial.println("Servo moved to angle1");
     }
     temps_servo = millis();
   }

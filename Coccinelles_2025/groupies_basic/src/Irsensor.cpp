@@ -6,9 +6,10 @@
 
 // Create an object for our VL53L5CX sensor
 
-Irsensor::Irsensor(int Ir_PIN)
+Irsensor::Irsensor(int SDA, int SCL)
 {
-    m_IR_PIN = Ir_PIN;
+    m_SDA = SDA;
+    m_SCL = SCL;
     dataReady = false;
 }
 
@@ -24,8 +25,7 @@ void Irsensor::setup()
     delay(1000);
     Serial.println("SparkFun VL53L5CX Imager Example");
 
-    Wire.begin();           // This resets I2C bus to 100kHz
-    Wire.setClock(1000000); // Sensor has max I2C freq of 1MHz
+    Wire.begin(m_SDA, m_SCL, 1000000); // SDA, SCL, freq in Hz
 
     Serial.println("Initializing sensor board. This can take up to 10s. Please wait.");
     if (myImager.begin() == false)
@@ -89,9 +89,9 @@ void Irsensor::loop()
                 ir_minimum_distance = min_distance ;
 
                 // Print minimum distance
-                // Serial.print("Minimum distance: ");
-                // Serial.println(m_minimum_distance);
-                // Serial.print("Minimum distance_centrale: ");
+                Serial.print("Minimum distance: ");
+                Serial.println(ir_minimum_distance);
+                Serial.print("Minimum distance_centrale: ");
                 Serial.println(measurementData.distance_mm[35]);
             }
         }
