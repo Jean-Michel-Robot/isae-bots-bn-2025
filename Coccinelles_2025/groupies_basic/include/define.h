@@ -10,10 +10,13 @@
 /*
 ENCODEURS
 */
-#define CLK_R 21 // CLK LEFT  ENCODER
-#define DT_R 22 // DT LEFT Encoder
+//encodeur 2
+#define CLK_R 18 // CLK LEFT  ENCODER
+#define DT_R 19 // DT LEFT Encoder
 
-#define CLK_L 13 // CLK RIGHT ENCODER
+
+//encodeur 1
+#define CLK_L 4 // CLK RIGHT ENCODER
 #define DT_L 16  // DT RIGHT Encoder
 
 #define INV_L 0 // Inversion du sens de rotation de l'encodeur gauche
@@ -23,14 +26,15 @@ ENCODEURS
 /*
 MOTEURS
 */
+//moteur 2
+#define EN_L 25  // EN RIGHT MOTEUR
+#define IN1_L 26 // IN1 RIGHT MOTEUR
+#define IN2_L 27 // IN2 RIGHT MOTEUR
 
-#define EN_L 14  // EN RIGHT MOTEUR
-#define IN1_L 27 // IN1 RIGHT MOTEUR
-#define IN2_L 26 // IN2 RIGHT MOTEUR
-
-#define EN_R 33  // EN LEFT MOTEUR
-#define IN1_R 25 // IN1 LEFT MOTEUR
-#define IN2_R 32 // IN2 LEFT MOTEUR
+//moteur 1
+#define EN_R 13  // EN LEFT MOTEUR
+#define IN1_R 12 // IN1 LEFT MOTEUR
+#define IN2_R 14 // IN2 LEFT MOTEUR
 
 /*
 SENSORS

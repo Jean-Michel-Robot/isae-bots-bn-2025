@@ -10,11 +10,11 @@
 /*
 ENCODEURS
 */
-#define CLK_R 21 // CLK LEFT  ENCODER
-#define DT_R 22 // DT LEFT Encoder
+#define CLK_R 4 // CLK LEFT  ENCODER
+#define DT_R 16 // DT LEFT Encoder
 
-#define CLK_L 13 // CLK RIGHT ENCODER
-#define DT_L 16  // DT RIGHT Encoder
+#define CLK_L 18 // CLK RIGHT ENCODER
+#define DT_L 19  // DT RIGHT Encoder
 
 #define INV_L 0 // Inversion du sens de rotation de l'encodeur gauche
 #define INV_R 0 // Inversion du sens de rotation de l'encodeur droit
