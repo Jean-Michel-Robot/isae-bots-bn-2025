@@ -32,13 +32,13 @@ void setup()
 {
 
   
-  irsensor.setup();
+  //irsensor.setup();
   //mesure_pos.setup();
   // Si on veut tester les encodeurs , on les setup
-  /*
+  
   encoder_L.setup();
-  encoder_R.setup();
-  */
+  //encoder_R.setup();
+  
 
   //Serial.begin(115200); // Initialisation de la communication série
   //moteur_g.setup();     // Initialisation des moteurs
@@ -61,7 +61,7 @@ void loop()
   */
 
   
-  irsensor.loop();
+  //irsensor.loop();
   //mesure_pos.loop();
   // #DEBUG Si on veut tester les asservissements , on decommente la lige suivante et on commente machine_etats.loop()
   // asserv.loop();

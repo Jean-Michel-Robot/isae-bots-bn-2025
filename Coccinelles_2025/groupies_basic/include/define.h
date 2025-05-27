@@ -11,16 +11,16 @@
 ENCODEURS
 */
 //encodeur 2
-#define CLK_R 18 // CLK LEFT  ENCODER
-#define DT_R 19 // DT LEFT Encoder
+#define CLK_R 4 // CLK LEFT  ENCODER
+#define DT_R 16 // DT LEFT Encoder
 
 
 //encodeur 1
-#define CLK_L 4 // CLK RIGHT ENCODER
-#define DT_L 16  // DT RIGHT Encoder
+#define CLK_L 18 // CLK RIGHT ENCODER
+#define DT_L 19  // DT RIGHT Encoder
 
 #define INV_L 0 // Inversion du sens de rotation de l'encodeur gauche
-#define INV_R 1 // Inversion du sens de rotation de l'encodeur droit
+#define INV_R 0 // Inversion du sens de rotation de l'encodeur droit
 
 
 /*
@@ -28,8 +28,8 @@ MOTEURS
 */
 //moteur 2
 #define EN_L 25  // EN RIGHT MOTEUR
-#define IN1_L 26 // IN1 RIGHT MOTEUR
-#define IN2_L 27 // IN2 RIGHT MOTEUR
+#define IN1_L 27 // IN1 RIGHT MOTEUR
+#define IN2_L 26 // IN2 RIGHT MOTEUR
 
 //moteur 1
 #define EN_R 13  // EN LEFT MOTEUR
@@ -50,7 +50,7 @@ SERVO
 #define ANGLE1 20  
 #define ANGLE2 60 
 #define TEMPS_BLINK 1  //Temps clignotement (secondes).
-#define Serv_Pin 5 // A changer
+#define Serv_Pin 15 // A changer
 
 /*
 MACHINE A ETAT
