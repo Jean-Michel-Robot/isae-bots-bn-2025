@@ -49,16 +49,32 @@ SERVO
 /*
 MACHINE A ETAT
 */
+
+//Le coté est défini quand on estface à la scène.
+// equipe = 1 : on est du coté gauche.
+// equipe = 0 : on est du coté droit.
+
+
+#define WEQUIPE 8 
+#define READEQUIPE 9 //temp, pas trop compris lelien entre les deux.
+
 #define START_TIME 85  //Les groupies commence dans les 15 dernières minutes.
 #define DMIN 15 // En cm, à modifier.
-#define TOURNE_SUPERSTAR_X 120    
-#define TOURNE_SUPERSTAR_Y 0 //Position ou la superstar va tourner
-#define DEPART_SUPERSTAR_X 0
-#define DEPART_SUPERSTAR_Y 0
-#define FIN_SUPERSTAR_X 120
-#define FIN_SUPERSTAR_Y -38 //position finale superstar
 #define EPSP 1 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
+
+#define DEPART_SUPERSTAR_X 0
+#define DEPART_SUPERSTAR_Y 0
+#define TOURNE_SUPERSTAR_X 120    
+#define TOURNE_SUPERSTAR_Y 0 //Position ou la superstar va tourner
+
+/***Coté gauche (equipe = 1)***/
+#define GFIN_SUPERSTAR_X 120
+#define GFIN_SUPERSTAR_Y -38 //position finale superstar
+
+/***Coté droit (equipe = 0)***/
+#define DFIN_SUPERSTAR_X 120
+#define DFIN_SUPERSTAR_Y 38 //position finale superstar
 
 /*
 Capteur ultrason

@@ -15,6 +15,7 @@ Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Ultraso
 void Machine_etats::setup()
 {
     pinMode(4, INPUT);
+    pinMode(READEQUIPE, INPUT);
     etat = INIT;
     m_time = millis();
     //Serial.println(m_time);
@@ -35,6 +36,7 @@ void Machine_etats::loop()
         }
         // Lire l'état de la tirette
         tirette = digitalRead(4);
+        equipe = digitalRead(READEQUIPE) ;
         // //Serial.print("tirette = ") ;
         // //Serial.println(tirette) ;
         // Récupère la distance au danger le plus proche
@@ -42,6 +44,16 @@ void Machine_etats::loop()
         // //Serial.print("etat = ") ;
         // //Serial.println(etat) ;
         // //Serial.println();
+        if (equipe == 1) {
+            /*Coté gauche par rapport à scène*/
+            fin_x = GFIN_SUPERSTAR_X;
+            fin_y = GFIN_SUPERSTAR_Y;
+        }
+        else {
+            /*Coté droite par rapport à scène*/
+            fin_x = DFIN_SUPERSTAR_X;
+            fin_y = DFIN_SUPERSTAR_Y;
+        }
         switch (etat)
         {
             case INIT:
@@ -73,18 +85,18 @@ void Machine_etats::loop()
             m_p_asserv->asserv_global(SPEED, SPEED, angle); //corrige l'angle. 
             
             condx_turn = (pos_x <= TOURNE_SUPERSTAR_X + EPSP) && (pos_x >= TOURNE_SUPERSTAR_X - EPSP) ;
-            condy_turn = (pos_y <= TOURNE_SUPERSTAR_Y + EPSP) && (pos_y >= TOURNE_SUPERSTAR_Y - EPSP) ;
+            condy_turn = (pos_y <= TOURNE_SUPERSTAR_Y + EPSP) && (pos_y >= TOURNE_SUPERSTAR_Y - EPSP) ; //A modifier pour faire cercle.
             if ( condx_turn && condy_turn) {
-                pos_finit_x = FIN_SUPERSTAR_X;
-                pos_finit_y = FIN_SUPERSTAR_Y;
+                pos_finit_x = fin_x;
+                pos_finit_y = fin_y;
                 // pos_init_x = TOURNE_SUPERSTAR_X ;
                 // pos_init_y = TOURNE_SUPERSTAR_Y ;
                 // m_p_mesure_pos->reinitialise() ;
                 etat = MOVE ;
             }
 
-            condx_arret = (pos_x <= FIN_SUPERSTAR_X + EPSP) && (pos_x >= FIN_SUPERSTAR_X - EPSP) ;
-            condy_arret = (pos_y <= FIN_SUPERSTAR_Y + EPSP) && (pos_y >= FIN_SUPERSTAR_Y - EPSP) ;
+            condx_arret = (pos_x <= fin_x + EPSP) && (pos_x >= fin_x - EPSP) ;
+            condy_arret = (pos_y <= fin_y + EPSP) && (pos_y >= fin_y - EPSP) ;//A modifier pour faire cercle.
             if (condx_arret && condy_arret) {
                 etat = END ;
             }

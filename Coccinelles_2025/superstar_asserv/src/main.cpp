@@ -34,7 +34,8 @@ long m_time_log = 0; // Variable de temps ou on stocke le temps actuel
 void setup()
 {
 
-  
+  pinMode(WEQUIPE, OUTPUT) ;
+  digitalWrite(WEQUIPE, 1);
   ultrason.setup();
   mesure_pos.setup();
   // Si on veut tester les encodeurs , on les setup
