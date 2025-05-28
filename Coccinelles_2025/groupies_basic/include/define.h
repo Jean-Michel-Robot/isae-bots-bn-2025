@@ -41,8 +41,8 @@ SENSORS
 */  
 
 /*IR SENSOR*/
-#define I2C_SDA 21
-#define I2C_SCL 22
+#define I2C_SDA 17
+#define I2C_SCL 5
 
 /*
 SERVO
@@ -55,6 +55,7 @@ SERVO
 /*
 MACHINE A ETAT
 */
+#define time_global 30000
 #define START_TIME 85  //Les groupies commence dans les 15 dernières minutes.
 #define DMIN 15 // En cm, à modifier.
 #define EPSP 1 //Incertitude position, cm
@@ -63,14 +64,17 @@ MACHINE A ETAT
 #define DMAX 30 //En cm, à modifier.
 #define STARTX 0
 #define STARTY 0
+#define SPEED 20      // Vitesse en cm/s 25 est la vitesse max des moteurs
+// c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
+#define DISTANCE_MIN 0 // Distance minimale pour éviter un obstacle en mm
 /*ROBOT DERRIERE*/
-#define START_TIME1 88  //Les groupies commence dans les 15 dernières secondes, commence juste après.
-#define STARTX1 100 //temp
-#define STARTY1 1750 //temp
-#define TURNX1 900
-#define TURNY1 1600
-#define FINX1 1100
-#define FINY1 1500 
+#define START_TIME1 5000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+#define STARTX1 0 //temp
+#define STARTY1 0 //temp
+#define TURNX1 80
+#define TURNY1 7
+#define FINX1 145
+#define FINY1 7 
 /*ROBOT DEVANT*/
 #define START_TIME2 85  //Les groupies commence dans les 15 dernières secondes.
 #define STARTX2 100 //temp

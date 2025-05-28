@@ -35,7 +35,7 @@ void Machine_etats::loop()
             etat = END;
         }
         // Lire l'état de la tirette
-        tirette = digitalRead(4);
+        tirette = digitalRead(21);
 
         // Utilisation du capteur IR pour la distance minimale
         m_p_irsensor->loop();
@@ -44,10 +44,18 @@ void Machine_etats::loop()
         switch (etat)
         {
             case INIT:
+            //Serial.println("init");
+            //Serial.print("tirette = ");
+            //Serial.println(tirette);
+            //Serial.println("move");
+            //Serial.print("posex:");
+            //Serial.println(pos_x);
+            //Serial.print("poseY:");
+            //Serial.println(pos_y);
             if ((millis() - m_time_global >= START_TIME1) && tirette == 0) {
                 m_time_global = millis() ;
                 etat = MOVE ;
-                //Serial.println("init");
+                
             } 
             else {
                 etat = INIT ;
@@ -59,14 +67,30 @@ void Machine_etats::loop()
             //Serial.println(pos_x);
             //Serial.print("poseY:");
             //Serial.println(pos_y);
+            //Serial.print("tetha:");
+            //Serial.println(angle);
             if (m_minimum_distance <= DISTANCE_MIN) {
                 etat = STOP;
-                
             }
-            
+            else {
             pos_x = m_p_mesure_pos->position_x + pos_init_x;
             pos_y = m_p_mesure_pos->position_y + pos_init_y;
+            if(abs(angle - atan2(pos_finit_y - pos_y, pos_finit_x - pos_x) >=1 )){
+                Serial.print("#######ATENTION#######");
+                Serial.print("angle = ");
+                Serial.println(angle);
+                Serial.print("pos_finit_x = ");
+                Serial.println(pos_finit_x);
+                Serial.print("pos_finit_y = ");
+                Serial.println(pos_finit_y);
+                Serial.print("pos_x = ");
+                Serial.println(pos_x);
+                Serial.print("pos_y = ");
+                Serial.println(pos_y);
+            }
             angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
+            Serial.print("nouvel angle = ");
+            Serial.println(angle);
             //Serial.print("angle = ") ;
             //Serial.println(angle);
             m_p_asserv->asserv_global(SPEED, SPEED, angle); //corrige l'angle. 
@@ -76,8 +100,6 @@ void Machine_etats::loop()
             if ( condx_turn && condy_turn) {
                 pos_finit_x = FINX1 ;
                 pos_finit_y = FINY1 ;
-                pos_init_x = TURNX1 ;
-                pos_init_y = TURNY1 ;
                 has_turned = true;
                 // m_p_mesure_pos->reinitialise() ;
                 etat = MOVE ;
@@ -90,6 +112,7 @@ void Machine_etats::loop()
             }
             else {
                 etat = MOVE ;
+            }
             }
             break;
 

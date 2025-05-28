@@ -69,15 +69,15 @@ void Asserv::asserv_global(float vitesse_l_consigne, float vitesse_r_consigne, f
     //Serial.println("output_l" + String(output_l));
     //Serial.println("output_r" + String(output_r));
     float erreur_theta = theta_consigne - m_p_mesure_pos->position_theta;
-    // erreur_theta = fmod(erreur_theta, 2 * PI);
-    // if (erreur_theta > PI)
-    // {
-    //     erreur_theta -= 2 * PI;
-    // }
-    // else if (erreur_theta < -PI)
-    // {
-    //     erreur_theta += 2 * PI;
-    // }
+    erreur_theta = fmod(erreur_theta, 2 * PI);
+    if (erreur_theta > PI)
+    {
+        erreur_theta -= 2 * PI;
+    }
+    else if (erreur_theta < -PI)
+    {
+        erreur_theta += 2 * PI;
+    }
     float output_theta = m_asservPID_angle.computeOutput(erreur_theta, micros());
     // Serial.println("erreur_theta" + String(erreur_theta));
 
@@ -88,7 +88,7 @@ void Asserv::loop()
 {
     if (micros() - m_time >= 1e4)
     {
-        asserv_global(0, 0, M_PI); // vitesse max de 25 cm/s. Est-ce vrai ?
+        asserv_global(0, 0, M_PI/2); // vitesse max de 25 cm/s. Est-ce vrai ?
         m_time = micros();
     }
 }

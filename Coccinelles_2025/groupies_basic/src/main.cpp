@@ -50,10 +50,10 @@ void setup()
   moteur_d.setup();
   Serial.println("moteur setup");
   // Test moteur
-  /*
-  moteur_g.set_speed(255); //TODO : regler la vitesse pour tester la vitesse max
-  moteur_d.set_speed(255);
-  */
+  
+  //moteur_g.set_speed(255); //TODO : regler la vitesse pour tester la vitesse max
+  //moteur_d.set_speed(255);
+  
  
   asserv.setup();
   
@@ -69,19 +69,19 @@ void loop()
 {
     
   //DEBUG
-  encoder_L.loop();
-  encoder_R.loop();
+  //encoder_L.loop();
+  //encoder_R.loop();
   
   irsensor.loop(); // Lecture du capteur IR
   mesure_pos.loop();
   //  Serial.println("mesure pos loop");
   //  // #DEBUG Si on veut tester les asservissements , on decommente la lige suivante et on commente machine_etats.loop()
   //asserv.loop();
-  //machine_etats.loop();
-  //  Serial.println("machie etats loop");
+  machine_etats.loop();
+  //Serial.println("machie etats loop");
   // delay(100); // Delay de 100ms entre chaque boucle
   
-  if(m_time_log + 500 < millis()) // Log toutes les secondes
+  if(m_time_log + 200 < millis()) // Log toutes les secondes
   {
     Serial.print("Vitesse L :");
     Serial.print(mesure_pos.vitesse_l);
@@ -94,9 +94,14 @@ void loop()
     Serial.print(" Theta :");
     Serial.println(mesure_pos.position_theta);
 
-    //Serial.print(" Etat :");
-    //Serial.println(machine_etats.etat);
+    Serial.print(" Etat :");
+    Serial.print(machine_etats.etat);
+    Serial.print("   Angle machine à état :");
+    Serial.print(machine_etats.angle);
+    Serial.print("  Etape");
+    Serial.println(machine_etats.pos_finit_x);
     m_time_log = millis();
+
   }
 //le délai -pause des problèmes sur l'asserv !!
 }
