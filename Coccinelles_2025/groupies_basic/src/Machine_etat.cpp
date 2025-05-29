@@ -4,7 +4,7 @@
 
 #include <define.h>
 
-Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsensor *p_irsensor)
+Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsensor *p_irsensor, Serv *p_servo)
 {
     m_p_asserv = p_asserv;
     m_p_mesure_pos = p_mesure_pos;
@@ -20,6 +20,8 @@ void Machine_etats::setup()
     m_time_global = millis();
     // Initialisation du capteur IR
     m_p_irsensor->setup();
+    m_p_servo->setup();
+
 }
 
 void Machine_etats::loop()
@@ -27,6 +29,9 @@ void Machine_etats::loop()
 
     if (millis() - m_time >= dt)
     {
+        if (tirette == 1) {
+            m_time_global = millis();
+        }
         if (millis() - m_time_global >= TIMEGLOBAL)
         {
             // Serial.println("end") ;
@@ -44,8 +49,8 @@ void Machine_etats::loop()
         // Utilisation du capteur IR pour la distance minimale
         m_p_irsensor->loop();
         m_minimum_distance = m_p_irsensor->ir_minimum_distance;
-        //Serial.print("m_minimum_distance = ");
-        //Serial.println(m_minimum_distance);
+        Serial.print("m_minimum_distance = ");
+        Serial.println(m_minimum_distance);
 
         switch (etat)
         {
@@ -174,7 +179,7 @@ void Machine_etats::loop()
         case END:
             // Serial.println("end") ;
             m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
-            //m_p_servo->blink(1, ANGLE1, ANGLE2) ;
+            m_p_servo->blink(1000, ANGLE1, ANGLE2) ;
             break;
         }
         m_time = millis();

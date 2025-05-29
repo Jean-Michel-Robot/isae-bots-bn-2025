@@ -31,7 +31,7 @@ MOTEURS
 #define IN1_L 26 // IN1 RIGHT MOTEUR
 #define IN2_L 27 // IN2 RIGHT MOTEUR
 
-//moteur 1
+//moteur 1s
 #define EN_R 13  // EN LEFT MOTEUR
 #define IN1_R 12 // IN1 LEFT MOTEUR
 #define IN2_R 14 // IN2 LEFT MOTEUR
@@ -51,7 +51,7 @@ SERVO
 #define ANGLE1 30  
 #define ANGLE2 120 
 #define TEMPS_BLINK 1  //Temps clignotement (secondes).
-#define Serv_Pin 15 // A changer
+
 
 /*
 MACHINE A ETAT
@@ -80,7 +80,7 @@ MACHINE A ETAT
 
 
 /*ROBOT 3 (derrière)*/
-#define START_TIME3 9000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+#define START_TIME3 5000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX3 83
@@ -110,7 +110,7 @@ MACHINE A ETAT
 
 
 /*ROBOT 1 (devant)*/
-#define START_TIME1 85000  //Les groupies commence dans les 15 dernières secondes.
+#define START_TIME1 5000  //Les groupies commence dans les 15 dernières secondes.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX1 80

@@ -27,7 +27,11 @@ void Machine_etats::loop()
 
     if (millis() - m_time >= dt)
     {
-        if (millis() - m_time_global >= GLOBALTIME)
+        if (tirette == 1) {
+            m_time_global = millis();
+        }
+
+        if (millis() - m_time_global >= GLOBALTIME )
         {
             // Serial.println("end") ;
             m_p_asserv->asserv_global(0, 0, angle);
@@ -44,6 +48,8 @@ void Machine_etats::loop()
         // //Serial.print("etat = ") ;
         // //Serial.println(etat) ;
         // //Serial.println();
+
+        
 
         switch (etat)
         {

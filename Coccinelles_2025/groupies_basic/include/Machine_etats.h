@@ -49,6 +49,7 @@ public:
 // public:
     int tirette = 1; // TODO Etat par défaut de la tirette , CHANGER SI NECESSAIRE
     int equipe = 1;
+    int first = 0; //Tirette n'est pas tirée.
     
     float pos_init_x = STARTX; // TODO : A MODIFIER en foction de la stratégie
     float pos_init_y = STARTY;// TODO : A MODIFIER en foction de la stratégie
@@ -66,8 +67,9 @@ public:
 
     Mesure_pos *m_p_mesure_pos;
     Irsensor *m_p_irsensor;
+    
 
-    Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsensor *p_irsensor);
+    Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsensor *p_irsensor, Serv *p_servo);
     void setup();
     void loop();
 };

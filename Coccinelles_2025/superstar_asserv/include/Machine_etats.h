@@ -41,10 +41,12 @@ public:
     bool condy_arret ;
     int fin_x ;
     int fin_y ;
+    
 
 // public:
     int tirette = 1; // TODO Etat par défaut de la tirette , CHANGER SI NECESSAIRE
     int equipe = 1; 
+    //int first = 0 ;
     
     float pos_init_x = DEPART_SUPERSTAR_X; // TODO : A MODIFIER en foction de la stratégie
     float pos_init_y = DEPART_SUPERSTAR_Y;// TODO : A MODIFIER en foction de la stratégie

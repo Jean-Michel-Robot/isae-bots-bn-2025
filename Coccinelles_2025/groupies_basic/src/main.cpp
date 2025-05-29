@@ -27,7 +27,7 @@ Mesure_pos mesure_pos = Mesure_pos(&encoder_R, &encoder_L);
 Asserv asserv = Asserv(&moteur_d, &moteur_g, &mesure_pos);
 Serv servo = Serv(SERVPIN); // Initialisation du servo
 
-Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos, &irsensor);
+Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos, &irsensor, &servo);
 
 long m_time_log = 0; // Variable de temps ou on stocke le temps actuel
 
@@ -76,9 +76,10 @@ void loop()
   
   irsensor.loop(); // Lecture du capteur IR
   mesure_pos.loop();
+  //servo.loop();
   //  Serial.println("mesure pos loop");
   //  // #DEBUG Si on veut tester les asservissements , on decommente la lige suivante et on commente machine_etats.loop()
-  //asserv.loop();
+  // asserv.loop();
   machine_etats.loop();
   //servo.blink(1000, ANGLE1, ANGLE2); // Clignotement du servo
   //Serial.println("machie etats loop");

@@ -25,7 +25,7 @@ Encodeur encoder_R = Encodeur(CLK_R, DT_R);
 Encodeur encoder_L = Encodeur(CLK_L, DT_L);
 Mesure_pos mesure_pos = Mesure_pos(&encoder_R, &encoder_L);
 Asserv asserv = Asserv(&moteur_d, &moteur_g, &mesure_pos);
-Serv servo = Serv(SERVPIN);
+//Serv servo = Serv(SERVPIN);
 
 Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos, &ultrason);
 
@@ -39,7 +39,7 @@ void setup()
   ultrason.setup();
   mesure_pos.setup();
   // Si on veut tester les encodeurs , on les setup
-  servo.setup();
+  //servo.setup();
   
   encoder_L.setup();
   encoder_R.setup();
