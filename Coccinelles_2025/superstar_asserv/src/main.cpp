@@ -25,7 +25,7 @@ Encodeur encoder_R = Encodeur(CLK_R, DT_R);
 Encodeur encoder_L = Encodeur(CLK_L, DT_L);
 Mesure_pos mesure_pos = Mesure_pos(&encoder_R, &encoder_L);
 Asserv asserv = Asserv(&moteur_d, &moteur_g, &mesure_pos);
-//Serv servo = Serv(Serv_Pin);
+Serv servo = Serv(SERVPIN);
 
 Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos, &ultrason);
 
@@ -39,7 +39,7 @@ void setup()
   ultrason.setup();
   mesure_pos.setup();
   // Si on veut tester les encodeurs , on les setup
-  //servo.setup();
+  servo.setup();
   
   encoder_L.setup();
   encoder_R.setup();
@@ -75,12 +75,12 @@ void loop()
   
   
 //ultrason.loop();
-mesure_pos.loop();
+//mesure_pos.loop();
 //Serial.println("mesure pos loop");
 //  // #DEBUG Si on veut tester les asservissements , on decommente la lige suivante et on commente machine_etats.loop()
 //asserv.loop();
-machine_etats.loop();
-//servo.blink(1e3, 30, 120); 
+//machine_etats.loop();
+servo.blink(1e3, 30, 120); 
 //  Serial.println("machie etats loop");
 //ultrason.loop() ;
 
@@ -99,6 +99,8 @@ machine_etats.loop();
     Serial.print(mesure_pos.position_y);
     Serial.print(" Theta :");
     Serial.print(mesure_pos.position_theta);
+    Serial.print(" Distance Ultrason :");
+    Serial.print(ultrason.m_distance);
     Serial.print(" Etat :");
     Serial.println(machine_etats.etat);
     m_time_log = millis();

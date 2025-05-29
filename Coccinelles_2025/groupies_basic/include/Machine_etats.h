@@ -38,15 +38,20 @@ public:
     bool condx_arret ;
     bool condy_arret ;
     bool has_turned = false; // Indique si on a déjà tourné ou pas
+    int fin_x;
+    int fin_y;
+    int turn_x;
+    int turn_y;
 
 // public:
     int tirette = 1; // TODO Etat par défaut de la tirette , CHANGER SI NECESSAIRE
+    int equipe = 1;
     
-    float pos_init_x = STARTX1; // TODO : A MODIFIER en foction de la stratégie
-    float pos_init_y = STARTY1;// TODO : A MODIFIER en foction de la stratégie
+    float pos_init_x = STARTX; // TODO : A MODIFIER en foction de la stratégie
+    float pos_init_y = STARTY;// TODO : A MODIFIER en foction de la stratégie
     
-    float pos_finit_x = TURNX1; // Premier point clef
-    float pos_finit_y = TURNY1;// Premier point clef
+    float pos_finit_x; // Premier point clef
+    float pos_finit_y; // Premier point clef
     
     float pos_x = 0;
     float pos_y = 0;

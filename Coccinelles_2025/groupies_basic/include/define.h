@@ -55,8 +55,10 @@ SERVO
 /*
 MACHINE A ETAT
 */
-#define time_global 30000
-#define START_TIME 85  //Les groupies commence dans les 15 dernières minutes.
+
+#define EQUIPE 22 // Pin changement de côté.
+#define TIMEGLOBAL 100000 // Temps global en ms, à modifier pour la compétition (100 secondes)
+
 #define DMIN 15 // En cm, à modifier.
 #define EPSP 1 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
@@ -77,24 +79,49 @@ MACHINE A ETAT
 
 
 
-/*ROBOT 3*/
-#define START_TIME1 000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+/*ROBOT 3 (derrière)*/
+#define START_TIME3 92000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
 
-/*Coté gauche (équipe = 1)*/
-#define TURNX3 80
-#define TURNY3 7
-#define FINX3 145
-#define FINY3 7 
+/*Côté gauche (équipe = 1)*/
+#define GTURNX3 45
+#define GTURNY3 6
+#define GFINX3 150
+#define GFINY3 20
+/*Côté droit (équipe = 0)*/
+#define DTURNX3 45
+#define DTURNY3 -6
+#define DFINX3 150
+#define DFINY3 -20  
 
 
-/*ROBOT 1*/
-#define START_TIME2 85000  //Les groupies commence dans les 15 dernières secondes.
+/*ROBOT 2 (milieu)*/
+#define START_TIME2 89000  //Les groupies commence dans les 15 dernières secondes.
 
-#define TURNX1 700
-#define TURNY1 1625
-#define FINX1 1400
-#define FINY1 1400
+/*Côté gauche (équipe = 1)*/
+#define GTURNX2 80
+#define GTURNY2 10
+#define GFINX2 145
+#define GFINY2 10
+/*Côté droit (équipe = 0)*/
+#define DTURNX2 80
+#define DTURNY2 -10
+#define DFINX2 145
+#define DFINY2 -10  
 
+
+/*ROBOT 1 (devant)*/
+#define START_TIME1 85000  //Les groupies commence dans les 15 dernières secondes.
+
+/*Côté gauche (équipe = 1)*/
+#define GTURNX1 80
+#define GTURNY1 7
+#define GFINX1 190
+#define GFINY1 7
+/*Côté droit (équipe = 0)*/
+#define DTURNX1 80
+#define DTURNY1 -7
+#define DFINX1 190
+#define DFINY1 -7  
 
 
 

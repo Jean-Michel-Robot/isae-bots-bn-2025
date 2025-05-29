@@ -14,7 +14,7 @@
 
 #define K 1
 #define dt 10
-#define time_global 100000
+
 #define time_sensor 8000
 
 

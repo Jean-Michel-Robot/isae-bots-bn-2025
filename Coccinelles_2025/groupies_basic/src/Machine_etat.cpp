@@ -16,6 +16,7 @@ Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsenso
 void Machine_etats::setup()
 {
     pinMode(4, INPUT);
+    pinMode(EQUIPE, INPUT);
     etat = INIT;
     m_time = millis();
     m_time_global = millis();
@@ -28,7 +29,7 @@ void Machine_etats::loop()
 
     if (millis() - m_time >= dt)
     {   
-        if (millis() - m_time_global >= time_global)
+        if (millis() - m_time_global >= TIMEGLOBAL) 
         {
             //Serial.println("end") ;
             m_p_asserv->asserv_global(0, 0, angle);
@@ -36,11 +37,30 @@ void Machine_etats::loop()
         }
         // Lire l'état de la tirette
         tirette = digitalRead(21);
+        equipe = digitalRead(EQUIPE) ;
 
         // Utilisation du capteur IR pour la distance minimale
         m_p_irsensor->loop();
         m_minimum_distance = m_p_irsensor->ir_minimum_distance;
 
+        if (equipe == 1) {
+            /*Coté gauche par rapport à scène*/
+            pos_finit_x = GTURNX1; //NUMBER
+            pos_finit_y = GTURNY1; //NUMBER
+            turn_x = GTURNX1; //NUMBER
+            turn_y = GTURNY1; //NUMBER
+            fin_x = GFINX1; //NUMBER
+            fin_y = GFINY1; //NUMBER
+        }
+        else {
+            /*Coté droite par rapport à scène*/
+            pos_finit_x = DTURNX1; //NUMBER
+            pos_finit_y = DTURNY1; //NUMBER
+            turn_x = DTURNX1; //NUMBER
+            turn_y = DTURNY1; //NUMBER
+            fin_x = DFINX1; //NUMBER
+            fin_y = DFINY1; //NUMBER
+        }
         switch (etat)
         {
             case INIT:
@@ -52,7 +72,8 @@ void Machine_etats::loop()
             //Serial.println(pos_x);
             //Serial.print("poseY:");
             //Serial.println(pos_y);
-            if ((millis() - m_time_global >= START_TIME1) && tirette == 0) {
+            if ((millis() - m_time_global >= START_TIME1) && tirette == 0) //NULBER
+            {
                 m_time_global = millis() ;
                 etat = MOVE ;
                 
@@ -95,18 +116,18 @@ void Machine_etats::loop()
             //Serial.println(angle);
             m_p_asserv->asserv_global(SPEED, SPEED, angle); //corrige l'angle. 
             
-            condx_turn = (pos_x <= TURNX1 + EPSP) && (pos_x >= TURNX1 - EPSP) ;
-            condy_turn = (pos_y <= TURNY1 + EPSP) && (pos_y >= TURNY1 - EPSP) ;
+            condx_turn = (pos_x <= turn_x + EPSP) && (pos_x >= turn_x - EPSP) ;
+            condy_turn = (pos_y <= turn_y + EPSP) && (pos_y >= turn_y - EPSP) ;
             if ( condx_turn && condy_turn) {
-                pos_finit_x = FINX1 ;
-                pos_finit_y = FINY1 ;
+                pos_finit_x = fin_x ;
+                pos_finit_y = fin_y ;
                 has_turned = true;
                 // m_p_mesure_pos->reinitialise() ;
                 etat = MOVE ;
             }
 
-            condx_arret = (pos_x <= FINX1 + EPSP) && (pos_x >= FINX1 - EPSP) ;
-            condy_arret = (pos_y <= FINY1 + EPSP) && (pos_y >= FINY1 - EPSP) ;
+            condx_arret = (pos_x <= fin_x + EPSP) && (pos_x >= fin_x - EPSP) ;
+            condy_arret = (pos_y <= fin_y + EPSP) && (pos_y >= fin_y - EPSP) ;
             if (condx_arret && condy_arret && has_turned) {
                 etat = END ;
             }
