@@ -73,14 +73,14 @@ void loop()
 //encoder_L.loop();
 //encoder_R.loop();
   
-  
-//ultrason.loop();
-//mesure_pos.loop();
+
+ultrason.loop();
+mesure_pos.loop();
 //Serial.println("mesure pos loop");
 //  // #DEBUG Si on veut tester les asservissements , on decommente la lige suivante et on commente machine_etats.loop()
 //asserv.loop();
-//machine_etats.loop();
-servo.blink(1e3, 30, 120); 
+machine_etats.loop();
+//servo.blink(1e3, 30, 120); 
 //  Serial.println("machie etats loop");
 //ultrason.loop() ;
 

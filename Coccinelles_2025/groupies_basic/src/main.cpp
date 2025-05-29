@@ -25,6 +25,7 @@ Encodeur encoder_R = Encodeur(CLK_R, DT_R);
 Encodeur encoder_L = Encodeur(CLK_L, DT_L);
 Mesure_pos mesure_pos = Mesure_pos(&encoder_R, &encoder_L);
 Asserv asserv = Asserv(&moteur_d, &moteur_g, &mesure_pos);
+Serv servo = Serv(SERVPIN); // Initialisation du servo
 
 Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos, &irsensor);
 
@@ -36,6 +37,7 @@ void setup()
   
   irsensor.setup();
   mesure_pos.setup();
+  servo.setup(); // Initialisation du servo
   // Si on veut tester les encodeurs , on les setup
   
   
@@ -78,6 +80,7 @@ void loop()
   //  // #DEBUG Si on veut tester les asservissements , on decommente la lige suivante et on commente machine_etats.loop()
   //asserv.loop();
   machine_etats.loop();
+  //servo.blink(1000, ANGLE1, ANGLE2); // Clignotement du servo
   //Serial.println("machie etats loop");
   // delay(100); // Delay de 100ms entre chaque boucle
   

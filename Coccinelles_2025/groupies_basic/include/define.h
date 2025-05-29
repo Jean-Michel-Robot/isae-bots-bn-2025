@@ -47,8 +47,9 @@ SENSORS
 /*
 SERVO
 */
-#define ANGLE1 20  
-#define ANGLE2 60 
+#define SERVPIN 15 // Pin du servo, à changer si nécessaire
+#define ANGLE1 30  
+#define ANGLE2 120 
 #define TEMPS_BLINK 1  //Temps clignotement (secondes).
 #define Serv_Pin 15 // A changer
 
@@ -57,16 +58,15 @@ MACHINE A ETAT
 */
 
 #define EQUIPE 22 // Pin changement de côté.
-#define TIMEGLOBAL 100000 // Temps global en ms, à modifier pour la compétition (100 secondes)
+#define TIMEGLOBAL 1e5 // Temps global en ms, à modifier pour la compétition (100 secondes)
 
-#define DMIN 15 // En cm, à modifier.
+
 #define EPSP 1 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
-#define DMIN 15 // En cm, à modifier.
 #define DMAX 30 //En cm, à modifier.
 #define SPEED 20      // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
-#define DISTANCE_MIN 0 // Distance minimale pour éviter un obstacle en mm
+#define DISTANCE_MIN 60 // Distance minimale pour éviter un obstacle en mm
 
 #define STARTX 0
 #define STARTY 0
@@ -95,7 +95,7 @@ MACHINE A ETAT
 
 
 /*ROBOT 2 (milieu)*/
-#define START_TIME2 89000  //Les groupies commence dans les 15 dernières secondes.
+#define START_TIME2 5000  //Les groupies commence dans les 15 dernières secondes.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX2 80
