@@ -28,8 +28,8 @@ MOTEURS
 */
 //moteur 2
 #define EN_L 25  // EN RIGHT MOTEUR
-#define IN1_L 27 // IN1 RIGHT MOTEUR
-#define IN2_L 26 // IN2 RIGHT MOTEUR
+#define IN1_L 26 // IN1 RIGHT MOTEUR
+#define IN2_L 27 // IN2 RIGHT MOTEUR
 
 //moteur 1
 #define EN_R 13  // EN LEFT MOTEUR
@@ -80,33 +80,33 @@ MACHINE A ETAT
 
 
 /*ROBOT 3 (derrière)*/
-#define START_TIME3 92000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+#define START_TIME3 9000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
 
 /*Côté gauche (équipe = 1)*/
-#define GTURNX3 45
-#define GTURNY3 6
-#define GFINX3 150
-#define GFINY3 20
+#define GTURNX3 83
+#define GTURNY3 34
+#define GFINX3 111
+#define GFINY3 34
 /*Côté droit (équipe = 0)*/
-#define DTURNX3 45
-#define DTURNY3 -6
-#define DFINX3 150
-#define DFINY3 -20  
+#define DTURNX3 83
+#define DTURNY3 -34
+#define DFINX3 111
+#define DFINY3 -34  
 
 
 /*ROBOT 2 (milieu)*/
 #define START_TIME2 5000  //Les groupies commence dans les 15 dernières secondes.
 
 /*Côté gauche (équipe = 1)*/
-#define GTURNX2 80
-#define GTURNY2 10
-#define GFINX2 145
-#define GFINY2 10
+#define GTURNX2 90
+#define GTURNY2 28
+#define GFINX2 133
+#define GFINY2 28
 /*Côté droit (équipe = 0)*/
-#define DTURNX2 80
-#define DTURNY2 -10
-#define DFINX2 145
-#define DFINY2 -10  
+#define DTURNX2 90
+#define DTURNY2 -28
+#define DFINX2 133
+#define DFINY2 -28  
 
 
 /*ROBOT 1 (devant)*/

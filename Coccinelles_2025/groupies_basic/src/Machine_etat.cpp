@@ -44,8 +44,8 @@ void Machine_etats::loop()
         // Utilisation du capteur IR pour la distance minimale
         m_p_irsensor->loop();
         m_minimum_distance = m_p_irsensor->ir_minimum_distance;
-        Serial.print("m_minimum_distance = ");
-        Serial.println(m_minimum_distance);
+        //Serial.print("m_minimum_distance = ");
+        //Serial.println(m_minimum_distance);
 
         switch (etat)
         {
@@ -53,26 +53,26 @@ void Machine_etats::loop()
             if (equipe == 1)
             {
                 /*Coté gauche par rapport à scène*/
-                pos_finit_x = GTURNX2; // NUMBER
-                pos_finit_y = GTURNY2; // NUMBER
-                turn_x = GTURNX2;      // NUMBER
-                turn_y = GTURNY2;      // NUMBER
-                fin_x = GFINX2;        // NUMBER
-                fin_y = GFINY2;        // NUMBER
-                fin_final_x = GFINX2;  // NUMBER
-                fin_final_y = GFINY2;  // NUMBER
+                pos_finit_x = GTURNX3;//NUMBER
+                pos_finit_y = GTURNY3;//NUMBER
+                turn_x = GTURNX3;//NUMBER
+                turn_y = GTURNY3;//NUMBER
+                fin_x = GFINX3;//NUMBER
+                fin_y = GFINY3;//NUMBER
+                fin_final_x = GFINX3;//NUMBER
+                fin_final_y = GFINY3;//NUMBER
             }
             else
             {
                 /*Coté droite par rapport à scène*/
-                pos_finit_x = DTURNX2; // NUMBER
-                pos_finit_y = DTURNY2; // NUMBER
-                turn_x = DTURNX2;      // NUMBER
-                turn_y = DTURNY2;      // NUMBER
-                fin_x = DFINX2;        // NUMBER
-                fin_y = DFINY2;        // NUMBER
-                fin_final_x = DFINX2;  // NUMBER
-                fin_final_y = DFINY2;  // NUMBER
+                pos_finit_x = DTURNX3;//NUMBER
+                pos_finit_y = DTURNY3;//NUMBER
+                turn_x = DTURNX3;//NUMBER
+                turn_y = DTURNY3;//NUMBER
+                fin_x = DFINX3;//NUMBER
+                fin_y = DFINY3;//NUMBER
+                fin_final_x = DFINX3;//NUMBER
+                fin_final_y = DFINY3;//NUMBER
             }
             // Serial.println("init");
             // Serial.print("tirette = ");
@@ -82,7 +82,7 @@ void Machine_etats::loop()
             // Serial.println(pos_x);
             // Serial.print("poseY:");
             // Serial.println(pos_y);
-            if ((millis() - m_time_global >= START_TIME2) && tirette == 0) // NUMBER
+            if ((millis() - m_time_global >= START_TIME3) && tirette == 0) // NUMBER
             {
                 m_time_global = millis();
                 etat = MOVE;
@@ -137,7 +137,7 @@ void Machine_etats::loop()
 
                 if (condx_turn && condy_turn)
                 {
-                    Serial.println("turn");
+                    Serial.println("TURNRNRNRNRNNRRNNRNRNRNRNNRNRNRNRNRNRNRNRNRNRRNNRNRNRNRNRN");
                     pos_finit_x = fin_x;
                     pos_finit_y = fin_y;
                     has_turned = true;
