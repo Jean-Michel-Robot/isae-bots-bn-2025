@@ -55,26 +55,28 @@ MACHINE A ETAT
 // equipe = 0 : on est du coté droit.
 
 
-#define WEQUIPE 8 
-#define READEQUIPE 9 //temp, pas trop compris lelien entre les deux.
+#define WEQUIPE 5 
+#define READEQUIPE 17 //temp, pas trop compris lelien entre les deux.
 
 #define START_TIME 85  //Les groupies commence dans les 15 dernières minutes.
-#define DMIN 15 // En cm, à modifier.
-#define EPSP 1 //Incertitude position, cm
+#define SPEED 20      // Vitesse en cm/s 25 est la vitesse max des moteurs
+// c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
+#define DISTANCE_MIN 80 // Distance minimale pour éviter un obstacle en mm
+#define EPSP 0.5 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
 
 #define DEPART_SUPERSTAR_X 0
 #define DEPART_SUPERSTAR_Y 0
-#define TOURNE_SUPERSTAR_X 120    
+#define TOURNE_SUPERSTAR_X 116    
 #define TOURNE_SUPERSTAR_Y 0 //Position ou la superstar va tourner
 
 /***Coté gauche (equipe = 1)***/
-#define GFIN_SUPERSTAR_X 120
-#define GFIN_SUPERSTAR_Y -38 //position finale superstar
+#define GFIN_SUPERSTAR_X 116
+#define GFIN_SUPERSTAR_Y -31.5 //position finale superstar
 
 /***Coté droit (equipe = 0)***/
-#define DFIN_SUPERSTAR_X 120
-#define DFIN_SUPERSTAR_Y 38 //position finale superstar
+#define DFIN_SUPERSTAR_X 116
+#define DFIN_SUPERSTAR_Y 31.5 //position finale superstar
 
 /*
 Capteur ultrason

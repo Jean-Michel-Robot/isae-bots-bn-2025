@@ -62,27 +62,38 @@ MACHINE A ETAT
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
 #define DMIN 15 // En cm, à modifier.
 #define DMAX 30 //En cm, à modifier.
-#define STARTX 0
-#define STARTY 0
 #define SPEED 20      // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
 #define DISTANCE_MIN 0 // Distance minimale pour éviter un obstacle en mm
-/*ROBOT DERRIERE*/
-#define START_TIME1 5000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
-#define STARTX1 0 //temp
-#define STARTY1 0 //temp
-#define TURNX1 80
-#define TURNY1 7
-#define FINX1 145
-#define FINY1 7 
-/*ROBOT DEVANT*/
-#define START_TIME2 85  //Les groupies commence dans les 15 dernières secondes.
-#define STARTX2 100 //temp
-#define STARTY2 1625 //temp
-#define TURNX2 700
-#define TURNY2 1625
-#define FINX2 1400
-#define FINY2 1400
+
+#define STARTX 0
+#define STARTY 0
+
+/*** On a :
+ * pami 1 : celle qui part en premier, va le plus au fond
+ * pami 2 : celle qui part en deuxieme, va au milieu
+ * pami 3 : celle qui part en dernière, va au plus proche
+ */
+
+
+
+/*ROBOT 3*/
+#define START_TIME1 000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+
+/*Coté gauche (équipe = 1)*/
+#define TURNX3 80
+#define TURNY3 7
+#define FINX3 145
+#define FINY3 7 
+
+
+/*ROBOT 1*/
+#define START_TIME2 85000  //Les groupies commence dans les 15 dernières secondes.
+
+#define TURNX1 700
+#define TURNY1 1625
+#define FINX1 1400
+#define FINY1 1400
 
 
 

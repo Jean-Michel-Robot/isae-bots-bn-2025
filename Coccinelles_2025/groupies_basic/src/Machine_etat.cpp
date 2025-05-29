@@ -76,17 +76,17 @@ void Machine_etats::loop()
             pos_x = m_p_mesure_pos->position_x + pos_init_x;
             pos_y = m_p_mesure_pos->position_y + pos_init_y;
             if(abs(angle - atan2(pos_finit_y - pos_y, pos_finit_x - pos_x) >=1 )){
-                Serial.print("#######ATENTION#######");
-                Serial.print("angle = ");
-                Serial.println(angle);
-                Serial.print("pos_finit_x = ");
-                Serial.println(pos_finit_x);
-                Serial.print("pos_finit_y = ");
-                Serial.println(pos_finit_y);
-                Serial.print("pos_x = ");
-                Serial.println(pos_x);
-                Serial.print("pos_y = ");
-                Serial.println(pos_y);
+                //Serial.print("#######ATENTION#######");
+                //Serial.print("angle = ");
+                //Serial.println(angle);
+                //Serial.print("pos_finit_x = ");
+                //Serial.println(pos_finit_x);
+                //Serial.print("pos_finit_y = ");
+                //Serial.println(pos_finit_y);
+                //Serial.print("pos_x = ");
+                //Serial.println(pos_x);
+                //Serial.print("pos_y = ");
+                //Serial.println(pos_y);
             }
             angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
             Serial.print("nouvel angle = ");

@@ -40,7 +40,8 @@ void Machine_etats::loop()
         // //Serial.print("tirette = ") ;
         // //Serial.println(tirette) ;
         // Récupère la distance au danger le plus proche
-        //m_minimum_distance = m_p_ultrason->m_distance ;
+        m_p_ultrason->loop();
+        m_minimum_distance = m_p_ultrason->m_distance ;
         // //Serial.print("etat = ") ;
         // //Serial.println(etat) ;
         // //Serial.println();
@@ -54,6 +55,7 @@ void Machine_etats::loop()
             fin_x = DFIN_SUPERSTAR_X;
             fin_y = DFIN_SUPERSTAR_Y;
         }
+        //m_minimum_distance = m_p_ultrason->m_distance;
         switch (etat)
         {
             case INIT:
@@ -89,9 +91,6 @@ void Machine_etats::loop()
             if ( condx_turn && condy_turn) {
                 pos_finit_x = fin_x;
                 pos_finit_y = fin_y;
-                // pos_init_x = TOURNE_SUPERSTAR_X ;
-                // pos_init_y = TOURNE_SUPERSTAR_Y ;
-                // m_p_mesure_pos->reinitialise() ;
                 etat = MOVE ;
             }
 

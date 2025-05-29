@@ -11,7 +11,7 @@ Ultrason::Ultrason(int echo_PIN, int trigger_PIN)
 void Ultrason::setup()
 {
     pinMode(m_echo_PIN, INPUT);     // Broche Echo en entrée
-    pinMode(m_trigger_PIN, OUTPUT); // Broche Trigger en sortie
+    pinMode(m_trigger_PIN, OUTPUT); // Broche Trigger en sortie-èè---                          +
     digitalWrite(m_trigger_PIN, LOW);
 }
 
@@ -36,7 +36,7 @@ void Ultrason::loop()
         m_distance = m_duration * 0.034 / 2;
         
         //affichage de la distance (à commenter si pas besoin)
-        //Serial.print("Distance: ");
-        //Serial.println(m_distance);
+        Serial.print("Distance: ");
+        Serial.println(m_distance);
     }
 }
