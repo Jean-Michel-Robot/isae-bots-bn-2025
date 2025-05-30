@@ -4,11 +4,10 @@
 
 #include <define.h>
 
-Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Ultrason *p_ultrason)
+Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos)
 {
     m_p_asserv = p_asserv;
     m_p_mesure_pos = p_mesure_pos;
-    m_p_ultrason = p_ultrason;
 }
 
 void Machine_etats::setup()
@@ -38,8 +37,8 @@ void Machine_etats::loop()
         // Serial.print("tirette = ") ;
         // Serial.println(tirette) ;
         //  Récupère la distance au danger le plus proche
-        m_p_ultrason->loop();
-        m_minimum_distance = m_p_ultrason->m_distance;
+        //m_p_ultrason->loop();
+
         // //Serial.print("etat = ") ;
         // //Serial.println(etat) ;
         // //Serial.println();
@@ -96,68 +95,66 @@ void Machine_etats::loop()
             else
             {
 
-                if ((m_minimum_distance >= 0.1) && (m_minimum_distance <= DISTANCE_MIN))
+                pos_x = m_p_mesure_pos->position_x + pos_init_x;
+                pos_y = m_p_mesure_pos->position_y + pos_init_y;
+                angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
+                // Serial.print("angle = ") ;
+                // Serial.println(angle);
+                m_p_asserv->asserv_global(SPEED, SPEED, angle); // corrige l'angle.
+
+                condx_turn = (pos_x <= TOURNE_SUPERSTAR_X + EPSP) && (pos_x >= TOURNE_SUPERSTAR_X - EPSP);
+                condy_turn = (pos_y <= TOURNE_SUPERSTAR_Y + EPSP) && (pos_y >= TOURNE_SUPERSTAR_Y - EPSP); // A modifier pour faire cercle.
+
+                if (condx_turn && condy_turn)
                 {
-                    etat = STOP;
+                    pos_finit_x = fin_x;
+                    pos_finit_y = fin_y;
+                    m_time_recul = millis();
+                    etat = RECUL;
+                }
+
+                condx_arret = (pos_x <= fin_x + EPSP) && (pos_x >= fin_x - EPSP);
+                condy_arret = (pos_y <= fin_y + EPSP) && (pos_y >= fin_y - EPSP); // A modifier pour faire cercle.
+                if (condx_arret && condy_arret)
+                {
+                    Serial.println("RECULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+                    etat = END;
                 }
                 else
-                {
-                    pos_x = m_p_mesure_pos->position_x + pos_init_x;
-                    pos_y = m_p_mesure_pos->position_y + pos_init_y;
-                    angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
-                    // Serial.print("angle = ") ;
-                    // Serial.println(angle);
-                    m_p_asserv->asserv_global(SPEED, SPEED, angle); // corrige l'angle.
-
-                    condx_turn = (pos_x <= TOURNE_SUPERSTAR_X + EPSP) && (pos_x >= TOURNE_SUPERSTAR_X - EPSP);
-                    condy_turn = (pos_y <= TOURNE_SUPERSTAR_Y + EPSP) && (pos_y >= TOURNE_SUPERSTAR_Y - EPSP); // A modifier pour faire cercle.
-                    if (condx_turn && condy_turn)
-                    {
-                        pos_finit_x = fin_x;
-                        pos_finit_y = fin_y;
-                        etat = MOVE;
-                    }
-
-                    condx_arret = (pos_x <= fin_x + EPSP) && (pos_x >= fin_x - EPSP);
-                    condy_arret = (pos_y <= fin_y + EPSP) && (pos_y >= fin_y - EPSP); // A modifier pour faire cercle.
-                    if (condx_arret && condy_arret)
-                    {
-                        etat = END;
-                    }
-                    else
-                    {
-                        etat = MOVE;
-                    }
-                }
-            }
-            break;
-
-        case STOP:
-            // Serial.println("stop");
-            if (millis() - m_time_global >= GLOBALTIME)
-            {
-                // Serial.println("end") ;
-                m_p_asserv->asserv_global(0, 0, angle);
-                etat = END;
-            }
-            else
-            {
-                m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
-                if ((m_minimum_distance <= 0.1) || (m_minimum_distance >= DISTANCE_MIN))
                 {
                     etat = MOVE;
                 }
-                else
-                {
-                    etat = STOP;
-                }
             }
             break;
+        case RECUL:
+            if ((millis() - m_time_recul) <= TIMERECUL)
+            {
+                pos_x = m_p_mesure_pos->position_x + pos_init_x;
+                pos_y = m_p_mesure_pos->position_y + pos_init_y;
+                angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
+                if (has_turned == 1)
+                {
+                    m_p_asserv->asserv_global(0, 0, M_PI / 2);
+                    etat = RECUL;
+                    if ((millis() - m_time_recul) >= 500)
+                    {
+                        has_turned = 0;
+                    }
+                }
+                else
+                {
+                    m_p_asserv->asservissement(-SPEED, -SPEED);
+                    etat = RECUL;
+                }
+            }
+            else
+            {
+                etat = MOVE;
+            }
 
         case END:
             // Serial.println("end") ;
-            m_p_asserv->asserv_global(0, 0, 0);
-
+            m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
             // m_p_servo->blink(1, ANGLE1, ANGLE2) ;
             break;
         }

@@ -55,25 +55,25 @@ MACHINE A ETAT
 #define READEQUIPE 17 // temp, pas trop compris lelien entre les deux.
 
 #define GLOBALTIME 97000 // Temps global de la pami en ms
-#define START_TIME 85000 // Les pamis commencent dans les 15 dernières minutes.
+#define START_TIME 1000  // Les pamis commencent dans les 15 dernières minutes.
 #define SPEED 40         // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
 #define DISTANCE_MIN 17 // Distance minimale pour éviter un obstacle en mm
 #define EPSP 1          // Incertitude position, cm
 #define EPSA 0.1        // 0,1 ? //Incertitude position, radian
-
+#define TIMERECUL 3000
 #define DEPART_SUPERSTAR_X 0
 #define DEPART_SUPERSTAR_Y 0
-#define TOURNE_SUPERSTAR_X 116
+#define TOURNE_SUPERSTAR_X 111
 #define TOURNE_SUPERSTAR_Y 0 // Position ou la superstar va tourner
 
 /***Coté gauche (equipe = 1)***/
 #define GFIN_SUPERSTAR_X 116
-#define GFIN_SUPERSTAR_Y 26.5 // position finale superstar
+#define GFIN_SUPERSTAR_Y 27 // position finale superstar
 
 /***Coté droit (equipe = 0)***/
 #define DFIN_SUPERSTAR_X 116
-#define DFIN_SUPERSTAR_Y -26.5 // position finale superstar
+#define DFIN_SUPERSTAR_Y -27 // position finale superstar
 
 /*
 Capteur ultrason

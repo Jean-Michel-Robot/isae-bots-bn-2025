@@ -1,3 +1,4 @@
+
 #ifndef MACHINE_ETATS_H
 #define MACHINE_ETATS_H
 
@@ -7,6 +8,7 @@
 #include <Irsensor.h>
 #include <Asserv.h>
 #include <Define_map.h>
+#include "Ultrason.hpp"
 #include "Serv.h"
 #include "define.h"
 
@@ -21,8 +23,8 @@ class Machine_etats
     {
         INIT,
         MOVE,
-        STOP,
         END,
+        RECUL,
 
     };
 
@@ -31,28 +33,25 @@ public:
     long m_time;
     long m_time_global;
     long m_time_sensor;
+    long m_time_recul = 0;
     bool condx_turn;
     bool condy_turn;
     bool condx_arret;
     bool condy_arret;
-    bool has_turned = false; // Indique si on a déjà tourné ou pas
     int fin_x;
     int fin_y;
-    int turn_x;
-    int turn_y;
-    int fin_final_x;
-    int fin_final_y;
+    int has_turned = 1;
 
     // public:
     int tirette = 1; // TODO Etat par défaut de la tirette , CHANGER SI NECESSAIRE
     int equipe = 1;
-    int first = 0; // Tirette n'est pas tirée.
+    // int first = 0 ;
 
-    float pos_init_x = STARTX; // TODO : A MODIFIER en foction de la stratégie
-    float pos_init_y = STARTY; // TODO : A MODIFIER en foction de la stratégie
+    float pos_init_x = DEPART_SUPERSTAR_X; // TODO : A MODIFIER en foction de la stratégie
+    float pos_init_y = DEPART_SUPERSTAR_Y; // TODO : A MODIFIER en foction de la stratégie
 
-    float pos_finit_x = 0; // Premier point clef
-    float pos_finit_y = 0; // Premier point clef
+    float pos_finit_x = TOURNE_SUPERSTAR_X; // Premier point clef
+    float pos_finit_y = TOURNE_SUPERSTAR_Y; // Premier point clef
 
     float pos_x = 0;
     float pos_y = 0;
