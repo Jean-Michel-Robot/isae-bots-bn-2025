@@ -61,7 +61,7 @@ MACHINE A ETAT
 
 #define GLOBALTIME 97000 // Temps global de la pami en ms 
 #define START_TIME 85000  //Les pamis commencent dans les 15 dernières minutes.
-#define SPEED 25      // Vitesse en cm/s 25 est la vitesse max des moteurs
+#define SPEED 40      // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
 #define DISTANCE_MIN 17 // Distance minimale pour éviter un obstacle en mm
 #define EPSP 0.5 //Incertitude position, cm
@@ -74,11 +74,11 @@ MACHINE A ETAT
 
 /***Coté gauche (equipe = 1)***/
 #define GFIN_SUPERSTAR_X 116
-#define GFIN_SUPERSTAR_Y 31.5 //position finale superstar
+#define GFIN_SUPERSTAR_Y 27 //position finale superstar
 
 /***Coté droit (equipe = 0)***/
 #define DFIN_SUPERSTAR_X 116
-#define DFIN_SUPERSTAR_Y -31.5 //position finale superstar
+#define DFIN_SUPERSTAR_Y -27 //position finale superstar
 
 /*
 Capteur ultrason
