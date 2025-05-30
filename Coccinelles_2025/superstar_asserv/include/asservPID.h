@@ -43,6 +43,6 @@ private:
 
     bool m_enableI = true;
     float m_N = 5.0;
-    float m_KP = 0.0, m_TI = 0.0, m_TD = 0.0;
+    float m_KP = 0.5, m_TI = 0.0, m_TD = 0.0;
 };
 #endif

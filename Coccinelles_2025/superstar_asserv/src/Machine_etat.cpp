@@ -35,8 +35,8 @@ void Machine_etats::loop()
         // Lire l'état de la tirette
         tirette = digitalRead(4);
         equipe = digitalRead(READEQUIPE);
-        Serial.print("tirette = ") ;
-        Serial.println(tirette) ;
+        //Serial.print("tirette = ") ;
+        //Serial.println(tirette) ;
         // Récupère la distance au danger le plus proche
         m_p_ultrason->loop();
         m_minimum_distance = m_p_ultrason->m_distance;
@@ -44,7 +44,8 @@ void Machine_etats::loop()
         // //Serial.println(etat) ;
         // //Serial.println();
 
-        
+        Serial.print("tps écoulé :");
+        Serial.println(millis()-m_time_global);
 
         switch (etat)
         {
@@ -56,8 +57,6 @@ void Machine_etats::loop()
             etat = END;
             }
             else {
-            if ((millis() - m_time_global >= START_TIME) && tirette == 0)
-            {
                 if (equipe == 1)
                 {
                     /*Coté gauche par rapport à scène*/
@@ -70,13 +69,15 @@ void Machine_etats::loop()
                     fin_x = DFIN_SUPERSTAR_X;
                     fin_y = DFIN_SUPERSTAR_Y;
                 }
+                if ((millis() - m_time_global >= START_TIME) && tirette == 0)
+                {
                 etat = MOVE;
                 // Serial.println("init");
-            }
-            else
-            {
+                }
+                else
+                {
                 etat = INIT;
-            }
+                }
             }
             break;
         case MOVE:

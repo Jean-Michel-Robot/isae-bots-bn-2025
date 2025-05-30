@@ -28,8 +28,8 @@ MOTEURS
 */
 //moteur 2
 #define EN_L 25  // EN RIGHT MOTEUR
-#define IN1_L 26 // IN1 RIGHT MOTEUR
-#define IN2_L 27 // IN2 RIGHT MOTEUR
+#define IN1_L 27 // IN1 RIGHT MOTEUR
+#define IN2_L 26 // IN2 RIGHT MOTEUR
 
 //moteur 1s
 #define EN_R 13  // EN LEFT MOTEUR
@@ -61,10 +61,10 @@ MACHINE A ETAT
 #define TIMEGLOBAL 97000 // Temps global en ms, à modifier pour la compétition (100 secondes)
 
 
-#define EPSP 1 //Incertitude position, cm
+#define EPSP 0.7 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
 #define DMAX 30 //En cm, à modifier.
-#define SPEED 25      // Vitesse en cm/s 25 est la vitesse max des moteurs
+#define SPEED 18      // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
 #define DISTANCE_MIN 60 // Distance minimale pour éviter un obstacle en mm
 
@@ -80,7 +80,7 @@ MACHINE A ETAT
 
 
 /*ROBOT 3 (derrière)*/
-#define START_TIME3 88000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+#define START_TIME3 85000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX3 83
