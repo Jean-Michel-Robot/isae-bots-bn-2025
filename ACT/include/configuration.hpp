@@ -4,12 +4,12 @@
 // -- SERVO POSITIONS --
 
 // Clamp 1
-#define CLAMP_2_1_OPEN_POS 10   // TODO
-#define CLAMP_2_1_CLOSED_POS 160  // TODO
+#define CLAMP_2_1_OPEN_POS 5   // TODO
+#define CLAMP_2_1_CLOSED_POS 170  // TODO
 
 // Clamp 2
-#define CLAMP_2_2_OPEN_POS 10   // TODO
-#define CLAMP_2_2_CLOSED_POS 160  // TODO
+#define CLAMP_2_2_OPEN_POS 5   // TODO
+#define CLAMP_2_2_CLOSED_POS 170  // TODO
 
 // Clamp bas  
 #define CLAMP_1_1_OPEN_POS 5   // TODO
@@ -36,16 +36,16 @@
 #define ELEVATOR_2_SPEED ELEVATOR_1_SPEED // rev per minute // TODO
 
 // number of steps between states DOWN and UP - change sign to invert direction
-#define ELEVATOR_1_POS_OFFSET 430 // TODO butée 43000    BAS
-#define ELEVATOR_2_POS_OFFSET 30000 // TODO HAUT
+#define ELEVATOR_1_POS_OFFSET 12000 // TODO butée 43000    BAS
+#define ELEVATOR_2_POS_OFFSET 12000 // TODO HAUT
 
 // -- PINS --
 
-#define ELEVATOR_1_STEP_PIN 3
-#define ELEVATOR_1_DIR_PIN 4
+#define ELEVATOR_1_STEP_PIN 5 //3 
+#define ELEVATOR_1_DIR_PIN 6 //4
 
-#define ELEVATOR_2_STEP_PIN 5
-#define ELEVATOR_2_DIR_PIN 6
+#define ELEVATOR_2_STEP_PIN 3 //5
+#define ELEVATOR_2_DIR_PIN 4 //6
 
 #define CLAMP_1_1_PIN 20 
 #define CLAMP_1_2_PIN 21
