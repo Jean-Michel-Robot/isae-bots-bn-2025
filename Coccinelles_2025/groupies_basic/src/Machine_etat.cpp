@@ -9,6 +9,7 @@ Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsenso
     m_p_asserv = p_asserv;
     m_p_mesure_pos = p_mesure_pos;
     m_p_irsensor = p_irsensor;
+    m_p_servo = p_servo;
 }
 
 void Machine_etats::setup()
@@ -20,7 +21,7 @@ void Machine_etats::setup()
     m_time_global = millis();
     // Initialisation du capteur IR
     m_p_irsensor->setup();
-    m_p_servo->setup();
+    //m_p_servo->setup();
 
 }
 
@@ -32,12 +33,11 @@ void Machine_etats::loop()
         if (tirette == 1) {
             m_time_global = millis();
         }
-        if (millis() - m_time_global >= TIMEGLOBAL)
-        {
-            // Serial.println("end") ;
-            m_p_asserv->asserv_global(0, 0, angle);
-            etat = END;
-        }
+        //Serial.print("millis = ");
+        //Serial.println(millis());
+        //Serial.print("m_time_global = ");
+        //Serial.println(m_time_global);
+        
         // Lire l'état de la tirette
         tirette = digitalRead(21);
         // Serial.print("tirette = ");
@@ -49,12 +49,21 @@ void Machine_etats::loop()
         // Utilisation du capteur IR pour la distance minimale
         m_p_irsensor->loop();
         m_minimum_distance = m_p_irsensor->ir_minimum_distance;
-        Serial.print("m_minimum_distance = ");
-        Serial.println(m_minimum_distance);
+        //Serial.print("m_minimum_distance = ");
+        //Serial.println(m_minimum_distance);
+        Serial.print("tps écoulé :");
+        Serial.println(millis()-m_time_global);
 
         switch (etat)
         {
         case INIT:
+            if (millis() - m_time_global >= TIMEGLOBAL)
+            {
+            // Serial.println("end") ;
+            m_p_asserv->asserv_global(0, 0, angle);
+            etat = END;
+            }
+            else {
             if (equipe == 1)
             {
                 /*Coté gauche par rapport à scène*/
@@ -89,15 +98,25 @@ void Machine_etats::loop()
             // Serial.println(pos_y);
             if ((millis() - m_time_global >= START_TIME3) && tirette == 0) // NUMBER
             {
-                m_time_global = millis();
                 etat = MOVE;
             }
             else
             {
                 etat = INIT;
             }
+            }
             break;
         case MOVE:
+            //Serial.print("tps écoulé :");
+            //Serial.println(millis()-m_time_global);
+            if (millis() - m_time_global >= TIMEGLOBAL)
+            {
+            // Serial.println("end") ;
+            m_p_asserv->asserv_global(0, 0, angle);
+            etat = END;
+            }
+            else {
+
             // Serial.println("move");
             // Serial.print("posex:");
             // Serial.println(pos_x);
@@ -161,9 +180,29 @@ void Machine_etats::loop()
                     etat = MOVE;
                 }
             }
+            }
             break;
 
         case STOP:
+            if (millis() - m_time_global >= TIMEGLOBAL)
+            {
+            // Serial.println("end") ;
+            m_p_asserv->asserv_global(0, 0, angle);
+            etat = END;
+            }
+            else
+            {
+                // Serial.println("stop");
+                m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
+                if (m_minimum_distance > DISTANCE_MIN)
+                {
+                    etat = MOVE;
+                }
+                else
+                {
+                    etat = STOP;
+                }
+            }
             // Serial.println("stop");
             m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
             if (m_minimum_distance > DISTANCE_MIN)
@@ -179,7 +218,7 @@ void Machine_etats::loop()
         case END:
             // Serial.println("end") ;
             m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
-            m_p_servo->blink(1000, ANGLE1, ANGLE2) ;
+            //m_p_servo->blink(TEMPS_BLINK, ANGLE1, ANGLE2) ;
             break;
         }
         m_time = millis();

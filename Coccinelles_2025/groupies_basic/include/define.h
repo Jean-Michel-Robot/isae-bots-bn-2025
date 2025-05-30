@@ -48,9 +48,9 @@ SENSORS
 SERVO
 */
 #define SERVPIN 15 // Pin du servo, à changer si nécessaire
-#define ANGLE1 30  
-#define ANGLE2 120 
-#define TEMPS_BLINK 1  //Temps clignotement (secondes).
+#define ANGLE1 20  
+#define ANGLE2 320 
+#define TEMPS_BLINK 2000  //Temps clignotement (secondes).
 
 
 /*
@@ -58,13 +58,13 @@ MACHINE A ETAT
 */
 
 #define EQUIPE 22 // Pin changement de côté.
-#define TIMEGLOBAL 1e5 // Temps global en ms, à modifier pour la compétition (100 secondes)
+#define TIMEGLOBAL 97000 // Temps global en ms, à modifier pour la compétition (100 secondes)
 
 
 #define EPSP 1 //Incertitude position, cm
 #define EPSA 0.1 //0,1 ? //Incertitude position, radian
 #define DMAX 30 //En cm, à modifier.
-#define SPEED 20      // Vitesse en cm/s 25 est la vitesse max des moteurs
+#define SPEED 25      // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
 #define DISTANCE_MIN 60 // Distance minimale pour éviter un obstacle en mm
 
@@ -80,37 +80,37 @@ MACHINE A ETAT
 
 
 /*ROBOT 3 (derrière)*/
-#define START_TIME3 5000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
+#define START_TIME3 88000  //Les groupies commence dans les 15 dernières secondes, commence juste après.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX3 83
-#define GTURNY3 34
+#define GTURNY3 38
 #define GFINX3 111
-#define GFINY3 34
+#define GFINY3 38
 /*Côté droit (équipe = 0)*/
 #define DTURNX3 83
-#define DTURNY3 -34
+#define DTURNY3 -38
 #define DFINX3 111
-#define DFINY3 -34  
+#define DFINY3 -38  
 
 
 /*ROBOT 2 (milieu)*/
-#define START_TIME2 5000  //Les groupies commence dans les 15 dernières secondes.
+#define START_TIME2 85000  //Les groupies commence dans les 15 dernières secondes.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX2 90
-#define GTURNY2 28
-#define GFINX2 133
-#define GFINY2 28
+#define GTURNY2 30
+#define GFINX2 135
+#define GFINY2 30
 /*Côté droit (équipe = 0)*/
 #define DTURNX2 90
-#define DTURNY2 -28
-#define DFINX2 133
-#define DFINY2 -28  
+#define DTURNY2 -30
+#define DFINX2 135
+#define DFINY2 -30  
 
 
 /*ROBOT 1 (devant)*/
-#define START_TIME1 5000  //Les groupies commence dans les 15 dernières secondes.
+#define START_TIME1 85000  //Les groupies commence dans les 15 dernières secondes.
 
 /*Côté gauche (équipe = 1)*/
 #define GTURNX1 80

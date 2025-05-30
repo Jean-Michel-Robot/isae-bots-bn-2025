@@ -60,7 +60,7 @@ void setup()
   asserv.setup();
   
   Serial.println("asserv setup");
-  //machine_etats.setup();
+  machine_etats.setup();
   Serial.println("machine etats setup");
 
   m_time_log = millis();
@@ -85,7 +85,7 @@ void loop()
   //Serial.println("machie etats loop");
   // delay(100); // Delay de 100ms entre chaque boucle
   
-  if(m_time_log + 200 < millis()) // Log toutes les secondes
+  if(m_time_log + 2090 < millis()) // Log toutes les secondes
   {
     Serial.print("Vitesse L :");
     Serial.print(mesure_pos.vitesse_l);

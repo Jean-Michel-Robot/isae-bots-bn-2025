@@ -31,12 +31,7 @@ void Machine_etats::loop()
             m_time_global = millis();
         }
 
-        if (millis() - m_time_global >= GLOBALTIME )
-        {
-            // Serial.println("end") ;
-            m_p_asserv->asserv_global(0, 0, angle);
-            etat = END;
-        }
+        
         // Lire l'état de la tirette
         tirette = digitalRead(4);
         equipe = digitalRead(READEQUIPE);
@@ -54,6 +49,13 @@ void Machine_etats::loop()
         switch (etat)
         {
         case INIT:
+            if (millis() - m_time_global >= GLOBALTIME )
+            {
+            // Serial.println("end") ;
+            m_p_asserv->asserv_global(0, 0, angle);
+            etat = END;
+            }
+            else {
             if ((millis() - m_time_global >= START_TIME) && tirette == 0)
             {
                 if (equipe == 1)
@@ -68,13 +70,13 @@ void Machine_etats::loop()
                     fin_x = DFIN_SUPERSTAR_X;
                     fin_y = DFIN_SUPERSTAR_Y;
                 }
-                m_time_global = millis();
                 etat = MOVE;
                 // Serial.println("init");
             }
             else
             {
                 etat = INIT;
+            }
             }
             break;
         case MOVE:
@@ -83,6 +85,14 @@ void Machine_etats::loop()
             // Serial.println(pos_x);
             // Serial.print("poseY:");
             // Serial.println(pos_y);
+            if (millis() - m_time_global >= GLOBALTIME )
+            {
+            // Serial.println("end") ;
+            m_p_asserv->asserv_global(0, 0, angle);
+            etat = END;
+            }
+            else {
+
             if ((m_minimum_distance >= 0.1) && (m_minimum_distance <= DISTANCE_MIN))
             {
                 etat = STOP;
@@ -116,10 +126,18 @@ void Machine_etats::loop()
                     etat = MOVE;
                 }
             }
+            }
             break;
 
         case STOP:
             // Serial.println("stop");
+            if (millis() - m_time_global >= GLOBALTIME )
+            {
+            // Serial.println("end") ;
+            m_p_asserv->asserv_global(0, 0, angle);
+            etat = END;
+            }
+            else {
             m_p_asserv->asserv_global(0, 0, m_p_mesure_pos->position_theta);
             if ((m_minimum_distance <= 0.1) || (m_minimum_distance >= DISTANCE_MIN))
             {
@@ -129,6 +147,7 @@ void Machine_etats::loop()
             {
                 etat = STOP;
             }
+         }
             break;
 
         case END:
