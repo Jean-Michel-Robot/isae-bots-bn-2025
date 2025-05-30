@@ -20,12 +20,12 @@
 #define CLAMP_1_2_CLOSED_POS 170  // TODO 0
 
 // The servo that opens first when deploying the banner
-#define BANNER_1_DEPLOYED_POS 50  // TODO
-#define BANNER_1_RETRACTED_POS 5  // TODO
+#define BANNER_1_DEPLOYED_POS 110  // TODO
+#define BANNER_1_RETRACTED_POS 0  // TODO
 
 // The other servo of the banner
-#define BANNER_2_DEPLOYED_POS 50  // TODO
-#define BANNER_2_RETRACTED_POS 5  // TODO
+#define BANNER_2_DEPLOYED_POS 110  // TODO
+#define BANNER_2_RETRACTED_POS 0  // TODO
 
 // -- STEPPERS CONFIGURATION (ELEVATORS) --
 
