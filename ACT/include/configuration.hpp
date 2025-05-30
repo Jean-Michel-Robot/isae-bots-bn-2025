@@ -11,13 +11,13 @@
 #define CLAMP_2_2_OPEN_POS 0   // TODO 10
 #define CLAMP_2_2_CLOSED_POS 0  // TODO 160
 
-// Clamp bas 1 et 2
+// Clamp haut gauche
 #define CLAMP_1_1_OPEN_POS 10  // TODO  5
 #define CLAMP_1_1_CLOSED_POS 160  // TODO  170
 
-// Clamp en trop -> 2
-#define CLAMP_1_2_OPEN_POS 10   // TODO  0
-#define CLAMP_1_2_CLOSED_POS 160  // TODO 0
+// Clamp haut droite
+#define CLAMP_1_2_OPEN_POS 5  // TODO  0
+#define CLAMP_1_2_CLOSED_POS 170  // TODO 0
 
 // The servo that opens first when deploying the banner
 #define BANNER_1_DEPLOYED_POS 50  // TODO
