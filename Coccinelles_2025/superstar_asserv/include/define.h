@@ -58,7 +58,7 @@ MACHINE A ETAT
 #define START_TIME 85000 // Les pamis commencent dans les 15 dernières minutes.
 #define SPEED 40         // Vitesse en cm/s 25 est la vitesse max des moteurs
 // c'est faux 25 n'est pas la vitesse max des moteurs, à trouver la bonne valeur (pour moi c'est 255)
-#define DISTANCE_MIN 17 // Distance minimale pour éviter un obstacle en mm
+#define DISTANCE_MIN 17 // Distance minimale pour éviter un obstacle en cm
 #define EPSP 1          // Incertitude position, cm
 #define EPSA 0.1        // 0,1 ? //Incertitude position, radian
 
