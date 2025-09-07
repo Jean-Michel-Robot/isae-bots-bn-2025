@@ -63,8 +63,9 @@ public:
     Serv *m_p_servo;
 
     Mesure_pos *m_p_mesure_pos;
+    Irsensor *m_p_irsensor ;
 
-    Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos);
+    Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsensor *p_irsensor);
     void setup();
     void loop();
 };

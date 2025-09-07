@@ -17,25 +17,25 @@
 
 #define IR_PIN 4 //  ne sert à rien pour le moment , sert pour l'interruption
 
-// Irsensor irsensor = Irsensor(I2C_SDA, I2C_SCL); // Initialisation du capteur IR
+Irsensor irsensor = Irsensor(I2C_SDA, I2C_SCL); // Initialisation du capteur IR
 Moteur moteur_d = Moteur(EN_R, IN1_R, IN2_R);
 Moteur moteur_g = Moteur(EN_L, IN1_L, IN2_L);
 Encodeur encoder_R = Encodeur(CLK_R, DT_R);
 Encodeur encoder_L = Encodeur(CLK_L, DT_L);
 Mesure_pos mesure_pos = Mesure_pos(&encoder_R, &encoder_L);
 Asserv asserv = Asserv(&moteur_d, &moteur_g, &mesure_pos);
-// Serv servo = Serv(SERVPIN); // Initialisation du servo
+Serv servo = Serv(SERVPIN); // Initialisation du servo
 
-Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos);
+Machine_etats machine_etats = Machine_etats(&asserv, &mesure_pos, &irsensor);
 
 long m_time_log = 0; // Variable de temps ou on stocke le temps actuel
 
 void setup()
 {
 
-  // irsensor.setup();
+  irsensor.setup();
   mesure_pos.setup();
-  // servo.setup(); // Initialisation du servo
+  servo.setup(); // Initialisation du servo
   //  Si on veut tester les encodeurs , on les setup
 
   encoder_L.setup();

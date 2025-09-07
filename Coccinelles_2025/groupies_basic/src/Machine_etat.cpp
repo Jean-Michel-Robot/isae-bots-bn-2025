@@ -4,10 +4,11 @@
 
 #include <define.h>
 
-Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos)
+Machine_etats::Machine_etats(Asserv *p_asserv, Mesure_pos *p_mesure_pos, Irsensor *p_irsensor)
 {
     m_p_asserv = p_asserv;
     m_p_mesure_pos = p_mesure_pos;
+    m_p_irsensor = p_irsensor;
 }
 
 void Machine_etats::setup()
@@ -17,8 +18,11 @@ void Machine_etats::setup()
     etat = INIT;
     m_time = millis();
     m_time_global = millis();
-    // Initialisation du capteur IR
 
+    // Initialisation du capteur IR
+    m_p_irsensor->setup();
+
+    // Initialisation du servo
     // m_p_servo->setup();
 }
 
@@ -31,25 +35,16 @@ void Machine_etats::loop()
         {
             m_time_global = millis();
         }
-        // Serial.print("millis = ");
-        // Serial.println(millis());
-        // Serial.print("m_time_global = ");
-        // Serial.println(m_time_global);
 
         // Lire l'état de la tirette
-        tirette = digitalRead(21);
-        // Serial.print("tirette = ");
-        // Serial.println(tirette);
+        tirette = digitalRead(21); // 21 = pin de la tirette / interrupteur
+        
         equipe = digitalRead(EQUIPE);
-        // Serial.print("equipe = ");
-        // Serial.println(equipe);
 
         // Utilisation du capteur IR pour la distance minimale
-
+        m_minimum_distance = m_p_irsensor->ir_minimum_distance ;
         // Serial.print("m_minimum_distance = ");
         // Serial.println(m_minimum_distance);
-        // Serial.print("tps écoulé :");
-        // Serial.println(millis()-m_time_global);
 
         switch (etat)
         {
@@ -86,14 +81,6 @@ void Machine_etats::loop()
                     fin_final_x = DFINX2;  // NUMBER
                     fin_final_y = DFINY2;  // NUMBER
                 }
-                // Serial.println("init");
-                // Serial.print("tirette = ");
-                // Serial.println(tirette);
-                // Serial.println("move");
-                // Serial.print("posex:");
-                // Serial.println(pos_x);
-                // Serial.print("poseY:");
-                // Serial.println(pos_y);
                 if ((millis() - m_time_global >= START_TIME2) && tirette == 0) // NUMBER
                 {
                     etat = MOVE;
@@ -115,39 +102,10 @@ void Machine_etats::loop()
             }
             else
             {
-
-                // Serial.println("move");
-                // Serial.print("posex:");
-                // Serial.println(pos_x);
-                // Serial.print("poseY:");
-                // Serial.println(pos_y);
-                // Serial.print("tetha:");
-                // Serial.println(angle);
-
-                // Serial.print("pos_finit_x = ");
-                // Serial.println(pos_finit_x);
-                // Serial.print("pos_finit_y = ");
-                // Serial.println(pos_finit_y);
                 pos_x = m_p_mesure_pos->position_x + pos_init_x;
                 pos_y = m_p_mesure_pos->position_y + pos_init_y;
-                // if(abs(angle - atan2(pos_finit_y - pos_y, pos_finit_x - pos_x) >= 1 )){
-                // Serial.print("#######ATENTION#######");
-                // Serial.print("angle = ");
-                // Serial.println(angle);
-                // Serial.print("pos_finit_x = ");
-                // Serial.println(pos_finit_x);
-                // Serial.print("pos_finit_y = ");
-                // Serial.println(pos_finit_y);
-                // Serial.print("pos_x = ");
-                // Serial.println(pos_x);
-                // Serial.print("pos_y = ");
-                // Serial.println(pos_y);
-                //}
                 angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
-                // Serial.print("nouvel angle = ");
-                // Serial.println(angle);
-                // Serial.print("angle = ") ;
-                // Serial.println(angle);
+
                 m_p_asserv->asserv_global(SPEED, SPEED, angle); // corrige l'angle.
 
                 condx_turn = (pos_x <= turn_x + EPSP) && (pos_x >= turn_x - EPSP);
@@ -155,7 +113,6 @@ void Machine_etats::loop()
 
                 if (condx_turn && condy_turn)
                 {
-                    Serial.println("TURNRNRNRNRNNRRNNRNRNRNRNNRNRNRNRNRNRNRNRNRNRRNNRNRNRNRNRN");
                     pos_finit_x = fin_x;
                     pos_finit_y = fin_y;
                     has_turned = true;
