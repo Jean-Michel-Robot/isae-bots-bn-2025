@@ -25,29 +25,27 @@ void Machine_etats::setup()
 void Machine_etats::loop()
 {
 
-    if (millis() - m_time >= dt)
+    if (millis() - m_time >= dt) // Tout les dt
     {
-        if (tirette == 1)
+        if (tirette == 1) // Si la tirette est toujours là, reset compteur à 0
         {
             m_time_global = millis();
         }
 
         // Lire l'état de la tirette
         tirette = digitalRead(4);
+
+        // Lis dans quelle équipe est la pami (interrupteur)
         equipe = digitalRead(READEQUIPE);
-        // Serial.print("tirette = ") ;
-        // Serial.println(tirette) ;
+
         //  Récupère la distance au danger le plus proche
         m_p_ultrason->loop();
         m_minimum_distance = m_p_ultrason->m_distance;
-        // //Serial.print("etat = ") ;
-        // //Serial.println(etat) ;
-        // //Serial.println();
 
-        Serial.print("tps écoulé :");
+        Serial.print("temps écoulé : dt = ");
         Serial.println(millis() - m_time_global);
 
-        switch (etat)
+        switch (etat) // Machine à etat
         {
         case INIT:
             if (millis() - m_time_global >= GLOBALTIME)
@@ -82,15 +80,11 @@ void Machine_etats::loop()
             }
             break;
         case MOVE:
-            // Serial.println("move");
-            // Serial.print("posex:");
-            // Serial.println(pos_x);
-            // Serial.print("poseY:");
-            // Serial.println(pos_y);
-            if (millis() - m_time_global >= GLOBALTIME)
+
+            if (millis() - m_time_global >= GLOBALTIME) // Si le match est terminé (T >= 100s)
             {
                 // Serial.println("end") ;
-                m_p_asserv->asserv_global(0, 0, angle);
+                m_p_asserv->asserv_global(0, 0, angle); // Arrêt
                 etat = END;
             }
             else
@@ -105,12 +99,12 @@ void Machine_etats::loop()
                     pos_x = m_p_mesure_pos->position_x + pos_init_x;
                     pos_y = m_p_mesure_pos->position_y + pos_init_y;
                     angle = atan2(pos_finit_y - pos_y, pos_finit_x - pos_x);
-                    // Serial.print("angle = ") ;
-                    // Serial.println(angle);
+
                     m_p_asserv->asserv_global(SPEED, SPEED, angle); // corrige l'angle.
 
                     condx_turn = (pos_x <= TOURNE_SUPERSTAR_X + EPSP) && (pos_x >= TOURNE_SUPERSTAR_X - EPSP);
                     condy_turn = (pos_y <= TOURNE_SUPERSTAR_Y + EPSP) && (pos_y >= TOURNE_SUPERSTAR_Y - EPSP); // A modifier pour faire cercle.
+                    
                     if (condx_turn && condy_turn)
                     {
                         pos_finit_x = fin_x;
@@ -120,6 +114,7 @@ void Machine_etats::loop()
 
                     condx_arret = (pos_x <= fin_x + EPSP) && (pos_x >= fin_x - EPSP);
                     condy_arret = (pos_y <= fin_y + EPSP) && (pos_y >= fin_y - EPSP); // A modifier pour faire cercle.
+
                     if (condx_arret && condy_arret)
                     {
                         etat = END;
@@ -132,7 +127,7 @@ void Machine_etats::loop()
             }
             break;
 
-        case STOP:
+        case STOP: 
             // Serial.println("stop");
             if (millis() - m_time_global >= GLOBALTIME)
             {

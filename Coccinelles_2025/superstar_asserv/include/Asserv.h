@@ -26,6 +26,7 @@ public:
     /**
      * @brief Constructeur classe asserv , prend en argument les deux moteurs du robot ainsi que sa position
      */
+    
     Asserv(Moteur *p_moteur_r, Moteur *p_moteur_l, Mesure_pos *p_mesure_pos);
     asservPID m_asservPID_r;     // asserv pour la roue droite
     asservPID m_asservPID_l;     // asserv pour la roue gauche
@@ -34,6 +35,7 @@ public:
     Moteur *m_p_moteur_r; // moteur droit
     Moteur *m_p_moteur_l; // moteur gauche
     Mesure_pos *m_p_mesure_pos;
+
     void setup(); // Initialisation des asservissements
     void loop();  // Boucle d'asservissement, ne sert que pour test l'asserv
     /**
