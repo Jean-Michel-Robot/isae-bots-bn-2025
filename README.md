@@ -1,6 +1,6 @@
-# isae-bots-bn-2023
+# isae-bots-bn-2025
 
-Repo BN -2023
+Repo BN 2025
 
 ## Getting started
 
